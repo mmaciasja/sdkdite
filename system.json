@@ -23,6 +23,11 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
     }
   ],
   "compatibility": {
@@ -34,7 +39,7 @@
     "units": "ft"
   },
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
+  "secondaryTokenAttribute": "apokotha",
   "manifest": "https://raw.githubusercontent.com/foundryvtt/worldbuilding/master/system.json",
   "download": "https://github.com/foundryvtt/worldbuilding/archive/refs/tags/release-082.zip"
 }
