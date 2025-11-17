@@ -14,8 +14,14 @@
       "min": 0,
       "max": 5
     },
-    "attributes": {},
-    "groups": {}
+    "attributes":{
+      "strength":{
+        "value": 0,
+        "label": "Strengh",
+        "modifier": []
+      }
+    },
+    "skills":{}
   }
 },
 "Item": {
