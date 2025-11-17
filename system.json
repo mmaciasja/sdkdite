@@ -1,6 +1,6 @@
 {
-  "id": "worldbuilding",
-  "version": "0.8.2",
+  "id": "sdkdite",
+  "version": "0.0.1",
   "title": "SKD DITE 2D10",
   "url": "https://github.com/mmaciasja/sdkdite/",
   "description": "A rudimentary implementation of Dite 2D10 for Foundry VTT, based entirely on the Simple Worldbuilding System for Foundry designed by Atropos.",
