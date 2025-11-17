@@ -40,6 +40,6 @@
   },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "apokotha",
-  "manifest": "https://raw.githubusercontent.com/foundryvtt/worldbuilding/master/system.json",
-  "download": "https://github.com/foundryvtt/worldbuilding/archive/refs/tags/release-082.zip"
+  "manifest": "",
+  "download": ""
 }
