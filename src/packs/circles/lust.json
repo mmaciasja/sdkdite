@@ -1,0 +1,17 @@
+{
+  "_key": "!items!03lust0000000001",
+  "_id": "03lust0000000001",
+  "name": "Lust",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/lust.png",
+  "system": {
+    "description": "CIRCLE.Lust.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 0,
+      "will": 0,
+      "insight": 2,
+      "speed": 2
+    }
+  }
+}

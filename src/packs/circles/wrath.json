@@ -1,0 +1,17 @@
+{
+  "_key": "!items!07wrath000000001",
+  "_id": "07wrath000000001",
+  "name": "Wrath",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/wrath.png",
+  "system": {
+    "description": "CIRCLE.Wrath.Description",
+    "stats": {
+      "strike": 3,
+      "defense": 0,
+      "will": 0,
+      "insight": 0,
+      "speed": 1
+    }
+  }
+}

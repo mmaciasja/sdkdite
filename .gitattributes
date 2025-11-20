@@ -1,5 +1,5 @@
-*.svg filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.webp filter=lfs diff=lfs merge=lfs -text
+styles/static/**/*.svg filter=lfs diff=lfs merge=lfs -text
+styles/static/**/*.png filter=lfs diff=lfs merge=lfs -text
+styles/static/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+styles/static/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+styles/static/**/*.webp filter=lfs diff=lfs merge=lfs -text

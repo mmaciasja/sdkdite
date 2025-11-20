@@ -43,6 +43,22 @@
   "SIMPLE.DeleteGroup": "Delete group?",
   "SIMPLE.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",
 
-  "SIMPLE.Create": "Create",
-  "SIMPLE.New": "New"
+  "SIMPLE.Create": "Crear",
+  "SIMPLE.New": "Nuevo",
+
+  "ANCESTRY.Ascerbide.Description": "Los Ascerbide son ágiles y astutos, maestros del sigilo y la precisión. Sobresalen en situaciones que requieren delicadeza y pensamiento rápido.",
+  "ANCESTRY.Katotero.Description": "Los Katotero son eruditos y magos brillantes, poseyendo capacidades intelectuales excepcionales. Están naturalmente sintonizados con las energías mágicas.",
+  "ANCESTRY.Prosopo.Description": "Los Prosopo son la ascendencia más común, conocidos por su adaptabilidad y naturaleza equilibrada. Sobresalen en situaciones sociales y son líderes naturales.",
+  "ANCESTRY.Zoodis.Description": "Los Zoodis son guerreros feroces con fuerte presencia física. Valoran el honor y la destreza en combate por encima de todo.",
+
+  "CIRCLE.NoCircle.Description": "Un personaje sin lealtad a ninguno de los círculos infernales, manteniendo su independencia y libertad de la influencia de los círculos del pecado.",
+  "CIRCLE.Limbus.Description": "El primer círculo del infierno, un lugar para aquellos que son virtuosos pero no bautizados. Los miembros de Limbus buscan conocimiento y comprensión, habitando en las sombras entre la luz y la oscuridad.",
+  "CIRCLE.Lust.Description": "El segundo círculo, donde los lujuriosos son castigados siendo arrastrados por tormentas. Los miembros de este círculo son impulsados por la pasión y el deseo, su carisma y encanto abrumadores.",
+  "CIRCLE.Gluttony.Description": "El tercer círculo, custodiado por Cerbero, donde los glotones se revuelcan en lodo y suciedad. Los miembros de este círculo son impulsados por el exceso y el consumo, su resistencia y resiliencia sin igual.",
+  "CIRCLE.Greed.Description": "El cuarto círculo, donde los avaros y derrochadores empujan grandes pesos unos contra otros. Los miembros de este círculo están consumidos por la avaricia y el deseo material, acumulando recursos y poder.",
+  "CIRCLE.Heresy.Description": "El sexto círculo, donde los herejes están atrapados en tumbas en llamas. Los miembros de este círculo rechazan la doctrina ortodoxa, su percepción de verdades prohibidas otorgándoles perspectivas únicas.",
+  "CIRCLE.Wrath.Description": "El quinto círculo, donde los coléricos luchan entre sí en el río Estigia mientras los melancólicos gorjean bajo la superficie. Los miembros de este círculo están consumidos por la rabia y la furia, sus golpes devastadores.",
+  "CIRCLE.Violence.Description": "El séptimo círculo, dividido en tres anillos para los violentos contra personas, sí mismos y la naturaleza. Los miembros de este círculo abrazan la brutalidad y la agresión, su destreza en combate legendaria.",
+  "CIRCLE.Fraud.Description": "El octavo círculo, dividido en diez fosas para diferentes tipos de fraude. Los miembros de este círculo son maestros del engaño y la manipulación, su astucia y velocidad sin paralelo.",
+  "CIRCLE.Treason.Description": "El noveno y último círculo, congelado en hielo, donde los traidores están aprisionados. Los miembros de este círculo han traicionado los lazos más profundos de confianza, su fría calculación y voluntad absolutas."
 }

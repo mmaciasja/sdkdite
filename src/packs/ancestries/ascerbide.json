@@ -5,7 +5,7 @@
   "type": "ancestry",
   "img": "systems/sdkdite/styles/static/compendium/ancestries/ascerbide.png",
   "system": {
-    "description": "<p>Ascerbide are agile and cunning, masters of stealth and precision. They excel in situations requiring finesse and quick thinking.</p>",
+    "description": "ANCESTRY.Ascerbide.Description",
     "baseStats": {
       "strength": 4,
       "endurance": 5,

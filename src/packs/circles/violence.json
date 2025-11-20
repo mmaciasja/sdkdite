@@ -1,0 +1,17 @@
+{
+  "_key": "!items!08violence000001",
+  "_id": "08violence000001",
+  "name": "Violence",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/violence.png",
+  "system": {
+    "description": "CIRCLE.Violence.Description",
+    "stats": {
+      "strike": 2,
+      "defense": 1,
+      "will": 0,
+      "insight": 0,
+      "speed": 1
+    }
+  }
+}

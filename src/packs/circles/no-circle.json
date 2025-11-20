@@ -1,0 +1,17 @@
+{
+  "_key": "!items!01nocircle000001",
+  "_id": "01nocircle000001",
+  "name": "No Circle",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/no-circle.png",
+  "system": {
+    "description": "CIRCLE.NoCircle.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 0,
+      "will": 0,
+      "insight": 0,
+      "speed": 0
+    }
+  }
+}

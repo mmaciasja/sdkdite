@@ -1,0 +1,17 @@
+{
+  "_key": "!items!02limbus00000001",
+  "_id": "02limbus00000001",
+  "name": "Limbus",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/limbus.png",
+  "system": {
+    "description": "CIRCLE.Limbus.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 1,
+      "will": 1,
+      "insight": 2,
+      "speed": 0
+    }
+  }
+}

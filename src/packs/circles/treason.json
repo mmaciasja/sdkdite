@@ -1,0 +1,17 @@
+{
+  "_key": "!items!10treason0000001",
+  "_id": "10treason0000001",
+  "name": "Treason",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/treason.png",
+  "system": {
+    "description": "CIRCLE.Treason.Description",
+    "stats": {
+      "strike": 1,
+      "defense": 1,
+      "will": 3,
+      "insight": 1,
+      "speed": 0
+    }
+  }
+}

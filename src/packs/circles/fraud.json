@@ -1,0 +1,17 @@
+{
+  "_key": "!items!09fraud000000001",
+  "_id": "09fraud000000001",
+  "name": "Fraud",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/fraud.png",
+  "system": {
+    "description": "CIRCLE.Fraud.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 1,
+      "will": 1,
+      "insight": 1,
+      "speed": 1
+    }
+  }
+}

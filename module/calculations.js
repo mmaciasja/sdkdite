@@ -47,18 +47,49 @@ export function calculateDerivedStats(actor) {
     }
   });
   
-  // Combat stats still use fixed base of 5 + mod (no level)
-  const combatStats = ['strike', 'insight', 'speed', 'defense', 'will'];
+  // Get circle stats bonuses
+  let circleStats = {
+    strike: 0,
+    defense: 0,
+    will: 0,
+    insight: 0,
+    speed: 0
+  };
   
-  combatStats.forEach(stat => {
-    if (system[stat]) {
-      const base = 5;
-      const mod = system[stat].mod || 0;
-      
-      // Total value = 5 + mod
-      system[stat].value = base + mod;
+  if (system.circleId) {
+    const circleItem = actor.items.get(system.circleId);
+    if (circleItem && circleItem.system.stats) {
+      circleStats = {
+        strike: circleItem.system.stats.strike || 0,
+        defense: circleItem.system.stats.defense || 0,
+        will: circleItem.system.stats.will || 0,
+        insight: circleItem.system.stats.insight || 0,
+        speed: circleItem.system.stats.speed || 0
+      };
     }
-  });
+  }
+  
+  // Combat stats calculated from primary stats + mod + circle bonus  
+  const str = system.strength?.value || 0;
+  const con = system.constitution?.value || 0;
+  const dex = system.dexterity?.value || 0;
+  const cha = system.charisma?.value || 0;
+  const int = system.intelligence?.value || 0;
+
+  // Strike = tenth of the strength + mod + circle bonus
+  system.strike.value = Math.floor((str) / 10) + (system.strike.mod || 0) + circleStats.strike;
+  
+  // Insight = tenth of intelligence, charisma, and dexterity + mod + circle bonus
+  system.insight.value = Math.floor((int + cha + dex) / 10) + (system.insight.mod || 0) + circleStats.insight;
+  
+  // Speed = fifth of dexterity + mod + circle bonus
+  system.speed.value = Math.floor(dex / 5) + (system.speed.mod || 0) + circleStats.speed;
+  
+  // Defense = Fifth of constitution + mod + circle bonus
+  system.defense.value =  Math.floor(con / 5) + (system.defense.mod || 0) + circleStats.defense;
+  
+  // Will = fifth of intelligence + mod + circle bonus
+  system.will.value = Math.floor(int / 5) + (system.will.mod || 0) + circleStats.will;
   
   return system;
 }

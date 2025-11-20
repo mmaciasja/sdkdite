@@ -33,7 +33,14 @@ export class SimpleItemSheet extends foundry.appv1.sheets.ItemSheet {
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
-    context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.systemData.description, {
+    
+    // Localize description if it's a translation key
+    let description = context.systemData.description;
+    if (description && !description.startsWith('<') && game.i18n.has(description)) {
+      description = game.i18n.localize(description);
+    }
+    
+    context.descriptionHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(description, {
       secrets: this.document.isOwner,
       async: true
     });

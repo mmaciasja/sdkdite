@@ -1,0 +1,17 @@
+{
+  "_key": "!items!05greed000000001",
+  "_id": "05greed000000001",
+  "name": "Greed",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/greed.png",
+  "system": {
+    "description": "CIRCLE.Greed.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 1,
+      "will": 2,
+      "insight": 1,
+      "speed": 0
+    }
+  }
+}

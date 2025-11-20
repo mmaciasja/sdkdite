@@ -1,0 +1,17 @@
+{
+  "_key": "!items!06heresy00000001",
+  "_id": "06heresy00000001",
+  "name": "Heresy",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/heresy.png",
+  "system": {
+    "description": "CIRCLE.Heresy.Description",
+    "stats": {
+      "strike": 0,
+      "defense": 0,
+      "will": 2,
+      "insight": 2,
+      "speed": 0
+    }
+  }
+}

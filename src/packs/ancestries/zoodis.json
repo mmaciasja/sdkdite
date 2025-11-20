@@ -5,7 +5,7 @@
   "type": "ancestry",
   "img": "systems/sdkdite/styles/static/compendium/ancestries/zoodis.png",
   "system": {
-    "description": "<p>Zoodis are fierce warriors with strong physical presence. They value honor and combat prowess above all.</p>",
+    "description": "ANCESTRY.Zoodis.Description",
     "baseStats": {
       "strength": 8,
       "endurance": 7,

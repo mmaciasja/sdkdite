@@ -5,7 +5,7 @@
   "type": "ancestry",
   "img": "systems/sdkdite/styles/static/compendium/ancestries/prosopo.png",
   "system": {
-    "description": "<p>Prosopo are the most common ancestry, known for their adaptability and balanced nature. They excel in social situations and are natural leaders.</p>",
+    "description": "ANCESTRY.Prosopo.Description",
     "baseStats": {
       "strength": 5,
       "endurance": 5,

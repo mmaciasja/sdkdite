@@ -5,7 +5,7 @@
   "type": "ancestry",
   "img": "systems/sdkdite/styles/static/compendium/ancestries/katotero.png",
   "system": {
-    "description": "<p>Katotero are brilliant scholars and mages, possessing exceptional intellectual capabilities. They are naturally attuned to magical energies.</p>",
+    "description": "ANCESTRY.Katotero.Description",
     "baseStats": {
       "strength": 3,
       "endurance": 4,

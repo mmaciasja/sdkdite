@@ -44,5 +44,21 @@
   "SIMPLE.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",
 
   "SIMPLE.Create": "Create",
-  "SIMPLE.New": "New"
+  "SIMPLE.New": "New",
+
+  "ANCESTRY.Ascerbide.Description": "Ascerbide are agile and cunning, masters of stealth and precision. They excel in situations requiring finesse and quick thinking.",
+  "ANCESTRY.Katotero.Description": "Katotero are brilliant scholars and mages, possessing exceptional intellectual capabilities. They are naturally attuned to magical energies.",
+  "ANCESTRY.Prosopo.Description": "Prosopo are the most common ancestry, known for their adaptability and balanced nature. They excel in social situations and are natural leaders.",
+  "ANCESTRY.Zoodis.Description": "Zoodis are fierce warriors with strong physical presence. They value honor and combat prowess above all.",
+
+  "CIRCLE.NoCircle.Description": "A character without allegiance to any of the infernal circles, maintaining their independence and freedom from the influence of the circles of sin.",
+  "CIRCLE.Limbus.Description": "The first circle of the inferno, a place of those who are virtuous but unbaptized. Members of Limbus seek knowledge and understanding, dwelling in the shadows between light and darkness.",
+  "CIRCLE.Lust.Description": "The second circle, where the lustful are punished by being blown about by storms. Members of this circle are driven by passion and desire, their charisma and charm overwhelming.",
+  "CIRCLE.Gluttony.Description": "The third circle, guarded by Cerberus, where the gluttonous wallow in mud and filth. Members of this circle are driven by excess and consumption, their endurance and resilience unmatched.",
+  "CIRCLE.Greed.Description": "The fourth circle, where the greedy and wasteful push great weights against each other. Members of this circle are consumed by avarice and material desire, hoarding resources and power.",
+  "CIRCLE.Heresy.Description": "The sixth circle, where heretics are trapped in flaming tombs. Members of this circle reject orthodox doctrine, their insight into forbidden truths granting them unique perspectives.",
+  "CIRCLE.Wrath.Description": "The fifth circle, where the wrathful fight each other in the River Styx while the sullen gurgle beneath the surface. Members of this circle are consumed by rage and fury, their strikes devastating.",
+  "CIRCLE.Violence.Description": "The seventh circle, divided into three rings for the violent against people, self, and nature. Members of this circle embrace brutality and aggression, their combat prowess legendary.",
+  "CIRCLE.Fraud.Description": "The eighth circle, divided into ten bolgias for different types of fraud. Members of this circle are masters of deception and manipulation, their cunning and speed unparalleled.",
+  "CIRCLE.Treason.Description": "The ninth and final circle, frozen in ice, where traitors are imprisoned. Members of this circle have betrayed the deepest bonds of trust, their cold calculation and willpower absolute."
 }

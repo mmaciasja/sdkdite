@@ -1,0 +1,17 @@
+{
+  "_key": "!items!04gluttony000001",
+  "_id": "04gluttony000001",
+  "name": "Gluttony",
+  "type": "circle",
+  "img": "systems/sdkdite/styles/static/compendium/circles/gluttony.png",
+  "system": {
+    "description": "CIRCLE.Gluttony.Description",
+    "stats": {
+      "strike": 1,
+      "defense": 2,
+      "will": 1,
+      "insight": 0,
+      "speed": 0
+    }
+  }
+}
