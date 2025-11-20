@@ -6,8 +6,11 @@
     "css": "gulp css",
     "watch": "gulp",
     "gulp": "gulp",
-    "build:db": "fvtt package workon sdkdite --type System && fvtt package pack ancestries --in packs/_source/ancestries --out packs",
-    "build:json": "fvtt package workon sdkdite --type System && fvtt package unpack ancestries --in packs/ancestries --out packs/_source/ancestries"
+    "build": "node tools/compile-packs.mjs",
+    "build:db": "node tools/compile-packs.mjs",
+    "build:json": "node tools/extract-packs.mjs",
+    "extract": "node tools/extract-packs.mjs",
+    "clean:packs": "node tools/clean-old-source.mjs"
   },
   "browserslist": [
     "last 3 versions"
