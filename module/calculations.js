@@ -19,7 +19,7 @@ export function calculateDerivedStats(actor) {
   };
   
   if (system.ancestryId) {
-    const ancestryItem = game.items.get(system.ancestryId);
+    const ancestryItem = actor.items.get(system.ancestryId);
     if (ancestryItem && ancestryItem.system.baseStats) {
       baseStats = {
         strength: ancestryItem.system.baseStats.strength || 0,

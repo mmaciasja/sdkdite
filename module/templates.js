@@ -8,19 +8,19 @@ export const preloadHandlebarsTemplates = async function() {
   // Define template paths to load
   const templatePaths = [
     // Actor tab templates
-    "systems/sdkdite/templates/actors/playable-character/tab-header.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-general.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-skills.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-combat.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-mask.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-rhapsodies.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-vulcanotech.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-almakathir.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-omniferis.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-diary.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-biography.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-items.html",
-    "systems/sdkdite/templates/actors/playable-character/tab-attributes.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-header.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-general.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-skills.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-combat.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-mask.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-rhapsodies.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-vulcanotech.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-almakathir.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-omniferis.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-diary.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-biography.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-items.html",
+    "systems/sdkdite/templates/actors/playable-character/tabs/tab-attributes.html",
     
     // Item templates
     "systems/sdkdite/templates/item/ancestry-sheet.html",

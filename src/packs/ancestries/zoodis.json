@@ -1,0 +1,18 @@
+{
+  "_key": "!items!zoodis0000000001",
+  "_id": "zoodis0000000001",
+  "name": "Zoodis",
+  "type": "ancestry",
+  "img": "systems/sdkdite/styles/static/compendium/ancestries/zoodis.png",
+  "system": {
+    "description": "<p>Zoodis are fierce warriors with strong physical presence. They value honor and combat prowess above all.</p>",
+    "baseStats": {
+      "strength": 8,
+      "endurance": 7,
+      "dexterity": 4,
+      "charisma": 4,
+      "intelligence": 5
+    },
+    "virtues": []
+  }
+}

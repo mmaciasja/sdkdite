@@ -36,8 +36,29 @@ npm run css
 
 ### 2. Compendium Development
 
-#### Adding/Editing Items via JSON
-1. Edit files in `packs/_source/ancestries/*.json`
+### JSON File Structure
+
+Each compendium item requires a `_key` field for compilation:
+
+```json
+{
+  "_key": "!items!<itemId>",
+  "_id": "<itemId>",
+  "name": "Item Name",
+  "type": "ancestry",
+  ...
+}
+```
+
+**Important:** The `_key` field follows the format `!<collection>!<id>`:
+- For Items: `!items!<id>`
+- For Actors: `!actors!<id>`
+- For Scenes: `!scenes!<id>`
+
+This field is required by the Foundry CLI to properly index documents in the LevelDB database.
+
+### Adding/Editing Items via JSON
+1. Edit files in `src/packs/ancestries/*.json`
 2. Rebuild the compendium:
    ```bash
    npm run build
@@ -54,13 +75,14 @@ npm run css
 
 #### Directory Structure
 ```
+src/
+└── packs/
+    └── ancestries/       # ✅ EDIT THESE (tracked in Git)
+        ├── prosopo.json
+        ├── zoodis.json
+        ├── ascerbide.json
+        └── katotero.json
 packs/
-├── _source/              # ✅ EDIT THESE (tracked in Git)
-│   └── ancestries/
-│       ├── prosopo.json
-│       ├── zoodis.json
-│       ├── ascerbide.json
-│       └── katotero.json
 └── ancestries/           # ❌ GENERATED (gitignored)
     ├── CURRENT
     ├── LOCK
@@ -97,7 +119,7 @@ Hot Reload is configured for:
 
 ### What to Commit
 ✅ **DO commit:**
-- `packs/_source/**/*.json` - Compendium source files
+- `src/packs/**/*.json` - Compendium source files
 - `module/**/*.js` - JavaScript code
 - `templates/**/*.html` - HTML templates
 - `styles/**/*.less` - LESS source files
@@ -118,7 +140,7 @@ Hot Reload is configured for:
 npm run build
 
 # Stage changes
-git add packs/_source/ module/ templates/
+git add src/packs/ module/ templates/
 
 # Commit
 git commit -m "Add new ancestry: Dragonborn"
@@ -133,7 +155,7 @@ git push
 
 ### 1. Create Source Directory
 ```bash
-mkdir packs\_source\<packname>
+mkdir src\packs\<packname>
 ```
 
 ### 2. Add to system.json

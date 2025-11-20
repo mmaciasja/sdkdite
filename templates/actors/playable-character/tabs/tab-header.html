@@ -26,7 +26,7 @@
         {{!-- Ancestry, Circle, Descent Items Row --}}
         <div class="char-items-row">
             {{!-- Ancestry Image --}}
-            <div class="char-item-small" data-item-type="ancestry">
+            <div class="char-item-small clickable" data-item-type="ancestry">
                 {{#if ancestryItem}}
                 <img src="{{ancestryItem.img}}" alt="{{ancestryItem.name}}" title="{{ancestryItem.name}}" class="item-image" />
                 {{else}}
@@ -37,7 +37,7 @@
             </div>
             
             {{!-- Circle Image --}}
-            <div class="char-item-small" data-item-type="circle">
+            <div class="char-item-small clickable" data-item-type="circle">
                 {{#if circleItem}}
                 <img src="{{circleItem.img}}" alt="{{circleItem.name}}" title="{{circleItem.name}}" class="item-image" />
                 {{else}}

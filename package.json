@@ -7,10 +7,8 @@
     "watch": "gulp",
     "gulp": "gulp",
     "build": "node tools/compile-packs.mjs",
-    "build:db": "node tools/compile-packs.mjs",
-    "build:json": "node tools/extract-packs.mjs",
     "extract": "node tools/extract-packs.mjs",
-    "clean:packs": "node tools/clean-old-source.mjs"
+    "clean": "node tools/clean-old-source.mjs"
   },
   "browserslist": [
     "last 3 versions"
@@ -23,6 +21,7 @@
     "gulp-less": "^4.0.1"
   },
   "devDependencies": {
-    "@foundryvtt/foundryvtt-cli": "^3.0.2"
+    "@foundryvtt/foundryvtt-cli": "^3.0.2",
+    "classic-level": "^3.0.0"
   }
 }

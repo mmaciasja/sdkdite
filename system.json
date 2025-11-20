@@ -21,6 +21,7 @@
     {
       "name": "ancestries",
       "label": "Ancestries",
+      "system": "sdkdite",
       "path": "packs/ancestries",
       "type": "Item",
       "ownership": {

@@ -80,13 +80,14 @@ npm run extract
 
 ```
 sdkdite/
+├── src/
+│   └── packs/
+│       └── ancestries/       # ✅ Edit these (in Git)
+│           ├── prosopo.json
+│           ├── zoodis.json
+│           ├── ascerbide.json
+│           └── katotero.json
 ├── packs/
-│   ├── _source/              # ✅ Edit these (in Git)
-│   │   └── ancestries/
-│   │       ├── prosopo.json
-│   │       ├── zoodis.json
-│   │       ├── ascerbide.json
-│   │       └── katotero.json
 │   └── ancestries/           # ❌ Generated (gitignored)
 │       ├── CURRENT
 │       ├── LOCK

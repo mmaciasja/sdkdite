@@ -13,7 +13,7 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sdkdite", "sheet", "actor"],
-      template: "systems/sdkdite/templates/actors/actor-playable-character.html",
+      template: "systems/sdkdite/templates/actors/playable-character/actor-playable-character.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -46,14 +46,14 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
       };
     }
     
-    // Get ancestry item
+    // Get ancestry item from actor's items
     if (context.systemData.ancestryId) {
-      context.ancestryItem = game.items.get(context.systemData.ancestryId);
+      context.ancestryItem = this.actor.items.get(context.systemData.ancestryId);
     }
     
-    // Get circle item
+    // Get circle item from actor's items
     if (context.systemData.circleId) {
-      context.circleItem = game.items.get(context.systemData.circleId);
+      context.circleItem = this.actor.items.get(context.systemData.circleId);
     }
     
     // Calculate descent stars (0-3 based on total experience)
@@ -228,11 +228,44 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     
     if (!itemType) return;
     
+    // Skip descent for now (it's just stars, not an item)
+    if (itemType === 'descent') return;
+    
+    // Get the current item if it exists
+    const currentItemId = this.actor.system[`${itemType}Id`];
+    const currentItem = currentItemId ? this.actor.items.get(currentItemId) : null;
+    
+    // If not in edit mode and item exists, show the item sheet
+    if (!this.editMode && currentItem) {
+      currentItem.sheet.render(true);
+      return;
+    }
+    
+    // If in edit mode or no item exists, show selection dialog
+    if (!this.editMode && !currentItem) return; // Do nothing in view mode if no item
+    
     // Get all items of the specified type from game.items
-    const availableItems = game.items.filter(i => i.type === itemType);
+    const worldItems = game.items.filter(i => i.type === itemType);
+    
+    // Get items from compendium
+    const compendiumItems = [];
+    for (const pack of game.packs) {
+      if (pack.metadata.type === "Item") {
+        const index = await pack.getIndex();
+        for (const entry of index) {
+          if (entry.type === itemType) {
+            const item = await pack.getDocument(entry._id);
+            if (item) compendiumItems.push(item);
+          }
+        }
+      }
+    }
+    
+    // Combine both sources
+    const availableItems = [...worldItems, ...compendiumItems];
     
     if (availableItems.length === 0) {
-      ui.notifications.warn(`No ${itemType} items available. Create some in the Items directory first.`);
+      ui.notifications.warn(`No ${itemType} items available. Create some in the Items directory or add them to a compendium.`);
       return;
     }
     
@@ -243,7 +276,11 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
           <label>Select ${itemType.charAt(0).toUpperCase() + itemType.slice(1)}:</label>
           <select name="itemId">
             <option value="">-- None --</option>
-            ${availableItems.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
+            ${availableItems.map(item => {
+              const source = item.pack ? `[Compendium]` : `[World]`;
+              const selected = currentItem && item.uuid === currentItem.uuid ? 'selected' : '';
+              return `<option value="${item.uuid}" ${selected}>${item.name} ${source}</option>`;
+            }).join('')}
           </select>
         </div>
       </form>
@@ -256,9 +293,34 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
         select: {
           label: "Select",
           callback: async (html) => {
-            const itemId = html.find('[name="itemId"]').val();
+            const itemUuid = html.find('[name="itemId"]').val();
+            if (!itemUuid) {
+              // Remove the item if "None" is selected
+              if (currentItemId) {
+                await this.actor.deleteEmbeddedDocuments("Item", [currentItemId]);
+              }
+              await this.actor.update({
+                [`system.${itemType}Id`]: null
+              });
+              return;
+            }
+            
+            // Get the item from UUID (works for both world and compendium items)
+            const item = await fromUuid(itemUuid);
+            if (!item) return;
+            
+            // Remove old item if it exists
+            if (currentItemId) {
+              await this.actor.deleteEmbeddedDocuments("Item", [currentItemId]);
+            }
+            
+            // Create a copy of the item on the actor
+            const itemData = item.toObject();
+            const [createdItem] = await this.actor.createEmbeddedDocuments("Item", [itemData]);
+            
+            // Update the actor to reference this item
             await this.actor.update({
-              [`system.${itemType}Id`]: itemId
+              [`system.${itemType}Id`]: createdItem.id
             });
           }
         },
