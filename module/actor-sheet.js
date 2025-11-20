@@ -38,11 +38,14 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     // Add edit mode state
     context.editMode = this.editMode ?? false;
     
-    // Calculate derived stats (value = base + mod + level for all stats)
+    // Calculate derived stats (value = 5 + mod + level for all stats)
     calculateDerivedStats(this.actor);
     
     // Calculate unused experience
     calculateUnusedExperience(this.actor);
+    
+    // Update context with calculated values
+    context.systemData = this.actor.system;
     
     return context;
   }
