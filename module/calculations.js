@@ -9,17 +9,54 @@
 export function calculateDerivedStats(actor) {
   const system = actor.system;
   
-  // Calculate total value for all stats: value = 5 (base) + mod + level
-  const allStats = ['strength', 'constitution', 'dexterity', 'charisma', 'intelligence', 'strike', 'insight', 'speed', 'defense', 'will'];
+  // Get base stats from ancestry item
+  let baseStats = {
+    strength: 0,
+    endurance: 0,
+    dexterity: 0,
+    charisma: 0,
+    intelligence: 0
+  };
   
-  allStats.forEach(stat => {
+  if (system.ancestryId) {
+    const ancestryItem = game.items.get(system.ancestryId);
+    if (ancestryItem && ancestryItem.system.baseStats) {
+      baseStats = {
+        strength: ancestryItem.system.baseStats.strength || 0,
+        endurance: ancestryItem.system.baseStats.endurance || 0,
+        dexterity: ancestryItem.system.baseStats.dexterity || 0,
+        charisma: ancestryItem.system.baseStats.charisma || 0,
+        intelligence: ancestryItem.system.baseStats.intelligence || 0
+      };
+    }
+  }
+  
+  // Calculate total value for primary stats: value = base (from ancestry) + mod + level
+  const primaryStats = ['strength', 'constitution', 'dexterity', 'charisma', 'intelligence'];
+  
+  primaryStats.forEach(stat => {
     if (system[stat]) {
-      const base = 5; // Fixed base value
+      // Use endurance for constitution
+      const baseStat = stat === 'constitution' ? 'endurance' : stat;
+      const base = baseStats[baseStat] || 0;
       const mod = system[stat].mod || 0;
       const level = system[stat].level || 0;
       
-      // Total value = 5 + mod + level
+      // Total value = base (from ancestry) + mod + level
       system[stat].value = base + mod + level;
+    }
+  });
+  
+  // Combat stats still use fixed base of 5 + mod (no level)
+  const combatStats = ['strike', 'insight', 'speed', 'defense', 'will'];
+  
+  combatStats.forEach(stat => {
+    if (system[stat]) {
+      const base = 5;
+      const mod = system[stat].mod || 0;
+      
+      // Total value = 5 + mod
+      system[stat].value = base + mod;
     }
   });
   

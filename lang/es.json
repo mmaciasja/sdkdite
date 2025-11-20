@@ -12,6 +12,11 @@
   "ITEM.TypeItem": "Item",
   "ITEM.TypeAncestry": "Ancestro",
   "ITEM.TypeCircle": "Círculo",
+  "ITEM.TypeSkill": "Habilidad",
+  "ITEM.TypeExperty": "Pericia",
+  "ITEM.TypeVirtue": "Virtud",
+
+  "ACTOR.TypeCharacter": "Personaje Jugable",
 
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",
   "SIMPLE.NotifyInitFormulaInvalid": "Initiative formula was invalid",
@@ -28,7 +33,7 @@
 
   "SIMPLE.DefineTemplate": "Definir como Plantilla",
   "SIMPLE.UnsetTemplate": "Quitar Plantilla",
-  "SIMPLE.NoTemplate": "PJ",
+  "SIMPLE.NoTemplate": "Sin plantilla",
 
   "SIMPLE.AttributeKey": "Attribute Key",
   "SIMPLE.AttributeValue": "Value",

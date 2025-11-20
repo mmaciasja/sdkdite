@@ -13,7 +13,7 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sdkdite", "sheet", "actor"],
-      template: "systems/sdkdite/templates/actor/actor-sheet.html",
+      template: "systems/sdkdite/templates/actors/actor-playable-character.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],

@@ -17,7 +17,18 @@
   ],
   "esmodules": ["module/simple.js"],
   "styles": ["styles/simple.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "ancestries",
+      "label": "Ancestries",
+      "path": "packs/ancestries",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
   "languages": [
     {
       "lang": "en",

@@ -1,0 +1,17 @@
+{
+  "name": "Zoodis",
+  "type": "ancestry",
+  "img": "systems/sdkdite/styles/static/compendium/ancestries/zoodis/ancestry.svg",
+  "system": {
+    "description": "<p>Zoodis are animalistic and primal, possessing enhanced physical capabilities. They have a deep connection to nature and instinctual awareness.</p>",
+    "baseStats": {
+      "strength": 7,
+      "endurance": 6,
+      "dexterity": 7,
+      "charisma": 4,
+      "intelligence": 4
+    },
+    "virtues": []
+  },
+  "flags": {}
+}

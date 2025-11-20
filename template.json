@@ -87,18 +87,19 @@
   }
 },
 "Item": {
-  "types": ["item", "ancestry", "circle"],
+  "types": ["ancestry", "circle", "skill", "experty", "virtue"],
   "htmlFields": ["description"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
-  },
   "ancestry": {
     "description": "",
-    "img": ""
+    "img": "",
+    "baseStats": {
+      "strength": 0,
+      "endurance": 0,
+      "dexterity": 0,
+      "charisma": 0,
+      "intelligence": 0
+    },
+    "virtues": []
   },
   "circle": {
     "description": "",
@@ -110,6 +111,23 @@
       "insight": 0,
       "speed": 0
     }
+  },
+  "skill": {
+    "description": "",
+    "img": ""
+  },
+  "experty": {
+    "description": "",
+    "img": ""
+  },
+  "virtue": {
+    "description": "",
+    "img": "",
+    "branch": "",
+    "name": "",
+    "type": "",
+    "requirement": "",
+    "mechanic": ""
   }
 }
 }

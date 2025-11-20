@@ -7,10 +7,11 @@
 import { SimpleActor } from "./actor.js";
 import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
+import { SimpleActorSheet } from "./actor-playable-character.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { initializeCompendiums } from "./compendium-init.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -21,6 +22,16 @@ import { SimpleToken, SimpleTokenDocument } from "./token.js";
  */
 Hooks.once("init", async function() {
   console.log(`Initializing Dite 2D10 System`);
+
+  // Auto-reload on JS file changes in development
+  if (game.modules.get("_hot-reload")?.active) {
+    Hooks.on("hotReload", (data) => {
+      if (data.extension === "js" || data.extension === "mjs") {
+        console.log(`Hot reloading JS file: ${data.path}`);
+        window.location.reload();
+      }
+    });
+  }
 
   /**
    * Set an initiative formula for the system. This will be updated later.
@@ -42,11 +53,32 @@ Hooks.once("init", async function() {
   CONFIG.Token.documentClass = SimpleTokenDocument;
   CONFIG.Token.objectClass = SimpleToken;
 
+  // Define document types
+  CONFIG.Actor.typeLabels = {
+    character: "ACTOR.TypeCharacter"
+  };
+  CONFIG.Item.typeLabels = {
+    ancestry: "ITEM.TypeAncestry",
+    circle: "ITEM.TypeCircle",
+    skill: "ITEM.TypeSkill",
+    experty: "ITEM.TypeExperty",
+    virtue: "ITEM.TypeVirtue"
+  };
+
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  foundry.documents.collections.Actors.registerSheet("sdkdite", SimpleActorSheet, { makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("sdkdite", SimpleActorSheet, { 
+    makeDefault: true,
+    types: ["character"],
+    label: "ACTOR.TypeCharacter"
+  });
+  
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  foundry.documents.collections.Items.registerSheet("sdkdite", SimpleItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("sdkdite", SimpleItemSheet, { 
+    makeDefault: true,
+    types: ["ancestry", "circle", "skill", "experty", "virtue"],
+    label: "Default Item Sheet"
+  });
 
   // Register system settings
   game.settings.register("sdkdite", "macroShorthand", {
@@ -56,6 +88,15 @@ Hooks.once("init", async function() {
     type: Boolean,
     default: true,
     config: true
+  });
+
+  // Register compendium initialization setting
+  game.settings.register("sdkdite", "compendiumsInitialized", {
+    name: "Compendiums Initialized",
+    scope: "world",
+    type: Boolean,
+    default: false,
+    config: false
   });
 
   // Register initiative setting.
@@ -99,9 +140,45 @@ Hooks.once("init", async function() {
 });
 
 /**
+ * Ready hook - initialize compendiums
+ */
+Hooks.once("ready", async function() {
+  // Initialize compendiums with default data
+  await initializeCompendiums();
+});
+
+/**
  * Macrobar hook.
  */
 Hooks.on("hotbarDrop", (bar, data, slot) => createWorldbuildingMacro(data, slot));
+
+/**
+ * Update actors when items they reference are updated
+ */
+Hooks.on("updateItem", (item, changes, options, userId) => {
+  // Check if this is an ancestry or circle item
+  if (item.type !== "ancestry" && item.type !== "circle") return;
+  
+  // Find all actors that reference this item
+  game.actors.forEach(actor => {
+    let needsUpdate = false;
+    
+    // Check if actor references this ancestry
+    if (item.type === "ancestry" && actor.system.ancestryId === item.id) {
+      needsUpdate = true;
+    }
+    
+    // Check if actor references this circle
+    if (item.type === "circle" && actor.system.circleId === item.id) {
+      needsUpdate = true;
+    }
+    
+    // Re-render the actor sheet if it's open
+    if (needsUpdate && actor.sheet?.rendered) {
+      actor.sheet.render(false);
+    }
+  });
+});
 
 /**
  * Adds the actor template context menu.

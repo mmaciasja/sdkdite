@@ -16,13 +16,6 @@ export class SimpleActor extends Actor {
 
   /* -------------------------------------------- */
 
-  /** @override */
-  static async createDialog(data={}, options={}) {
-    return EntitySheetHelper.createDialog.call(this, data, options);
-  }
-
-  /* -------------------------------------------- */
-
   /**
    * Is this Actor used as a template for other Actors?
    * @type {boolean}

@@ -1,11 +1,12 @@
 {
-  "name": "worldbuilding",
-  "version": "1.0.0",
-  "description": "CSS compiler for the Worldbuilding system",
+  "name": "sdkdite",
+  "version": "0.0.1",
+  "description": "SKD DITE 2D10 System for Foundry VTT",
   "scripts": {
     "css": "gulp css",
     "watch": "gulp",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "build:packs": "fvtt package pack ancestries --in src/packs/ancestries --out packs/ancestries"
   },
   "browserslist": [
     "last 3 versions"

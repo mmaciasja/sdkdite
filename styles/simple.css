@@ -970,3 +970,50 @@
   border-radius: 3px;
   text-align: center;
 }
+
+/* Virtue Fields Styling */
+.sdkdite .virtue-fields {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sdkdite .virtue-fields .field-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.sdkdite .virtue-fields .field-group.full-width {
+  grid-template-columns: 1fr;
+}
+
+.sdkdite .virtue-fields .field-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sdkdite .virtue-fields .field-item label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.sdkdite .virtue-fields .field-item input {
+  padding: 5px;
+  border: 1px solid #AAA;
+  border-radius: 3px;
+}
+
+/* Item Sheet - Virtues List */
+.sdkdite .items-list .item-image {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.sdkdite .items-list .item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
