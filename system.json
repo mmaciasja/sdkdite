@@ -41,5 +41,16 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "apokotha",
   "manifest": "",
-  "download": ""
+  "download": "",
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs", "html", "json", "js", "mjs"],
+      "paths": [
+        "module",
+        "styles",
+        "templates",
+        "lang"
+      ]
+    }
+  }
 }

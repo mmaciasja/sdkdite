@@ -16,21 +16,229 @@
                 <span> / </span>
                 <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
             </div>
+            
+            {{!-- Experience Stats --}}
+            <div class="experience-container">
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Experience</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            {{#if editMode}}
+                            <input type="number" name="system.experience.value" value="{{systemData.experience.value}}" />
+                            {{else}}
+                            <span class="stat-display">{{systemData.experience.value}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Unused Experience</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.experience.unused}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="general">General</a>
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="attributes">Attributes</a>
+        <a class="edit-mode-toggle" title="Toggle Edit Mode">
+            {{#if editMode}}
+            <i class="fas fa-eye"></i> View Mode
+            {{else}}
+            <i class="fas fa-edit"></i> Edit Mode
+            {{/if}}
+        </a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- General Tab --}}
+        <div class="tab general" data-group="primary" data-tab="general">
+            <div class="stats-container">
+            {{!-- Primary Stat Column --}}
+            <div class="stat-vertical-column">
+                {{!-- Strength --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Strength</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="strength">
+                            <span class="stat-display">{{systemData.strength.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.strength.mod" value="{{systemData.strength.mod}}" />
+                            </div>
+                            <div class="stat-v-box">
+                                <input type="number" name="system.strength.level" value="{{systemData.strength.level}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Constitution --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Constitution</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="constitution">
+                            <span class="stat-display">{{systemData.constitution.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.constitution.mod" value="{{systemData.constitution.mod}}" />
+                            </div>
+                            <div class="stat-v-box">
+                                <input type="number" name="system.constitution.level" value="{{systemData.constitution.level}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Dexterity --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Dexterity</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="dexterity">
+                            <span class="stat-display">{{systemData.dexterity.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.dexterity.mod" value="{{systemData.dexterity.mod}}" />
+                            </div>
+                            <div class="stat-v-box">
+                                <input type="number" name="system.dexterity.level" value="{{systemData.dexterity.level}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Charisma --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Charisma</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="charisma">
+                            <span class="stat-display">{{systemData.charisma.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.charisma.mod" value="{{systemData.charisma.mod}}" />
+                            </div>
+                            <div class="stat-v-box">
+                                <input type="number" name="system.charisma.level" value="{{systemData.charisma.level}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Intelligence --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Intelligence</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="intelligence">
+                            <span class="stat-display">{{systemData.intelligence.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.intelligence.mod" value="{{systemData.intelligence.mod}}" />
+                            </div>
+                            <div class="stat-v-box">
+                                <input type="number" name="system.intelligence.level" value="{{systemData.intelligence.level}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Secondary Stat Column --}}
+            <div class="stat-vertical-column">
+                {{!-- Strike --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Strike</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="strike">
+                            <span class="stat-display">{{systemData.strike.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.strike.mod" value="{{systemData.strike.mod}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Insight --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Insight</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="insight">
+                            <span class="stat-display">{{systemData.insight.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.insight.mod" value="{{systemData.insight.mod}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Speed --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Speed</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="speed">
+                            <span class="stat-display">{{systemData.speed.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.speed.mod" value="{{systemData.speed.mod}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Defense --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Defense</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="defense">
+                            <span class="stat-display">{{systemData.defense.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.defense.mod" value="{{systemData.defense.mod}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Will --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Will</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="will">
+                            <span class="stat-display">{{systemData.will.value}}</span>
+                        </div>
+                        <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
+                            <div class="stat-v-box">
+                                <input type="number" name="system.will.mod" value="{{systemData.will.mod}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
         {{!-- Biography Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
+        <div class="tab general" data-group="primary" data-tab="general">
             {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
         </div>
 
@@ -89,6 +297,8 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
+            
+
             <header class="attributes-header flexrow">
                 <span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
                 <span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>

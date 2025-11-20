@@ -12,8 +12,8 @@
   height: 100%;
 }
 .worldbuilding .sheet-header {
-  flex: 0 0 100px;
-  overflow: hidden;
+  flex: 0 0 180px;
+  overflow: visible;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,7 +27,8 @@
 }
 .worldbuilding .sheet-header .header-fields {
   flex: 1;
-  height: 100px;
+  height: auto;
+  min-height: 100px;
 }
 .worldbuilding .sheet-header h1.charname {
   height: 50px;
@@ -51,6 +52,21 @@
   width: 100px;
   height: 28px;
 }
+
+/* Experience Container in Header */
+.worldbuilding .header-fields .experience-container {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 10px;
+  clear: both;
+}
+
+.worldbuilding .header-fields .experience-container .stat-v-main {
+  width: 57px;
+  border-radius: 0 0 5px 5px;
+}
+
 .worldbuilding .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
@@ -64,6 +80,27 @@
   text-decoration: underline;
   text-shadow: none;
 }
+
+/* Edit Mode Toggle Button */
+.worldbuilding .edit-mode-toggle {
+  margin-left: auto;
+  padding: 0 10px;
+  line-height: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #4b4a44;
+  transition: color 0.2s;
+}
+
+.worldbuilding .edit-mode-toggle:hover {
+  color: #000;
+  text-shadow: 0 0 8px red;
+}
+
+.worldbuilding .edit-mode-toggle i {
+  margin-right: 5px;
+}
+
 .worldbuilding .sheet-body {
   overflow: hidden;
 }
@@ -115,6 +152,251 @@
 .worldbuilding .attributes {
   position: relative;
 }
+
+/* Character Stats Components - Figma Design */
+.worldbuilding .char-attributes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+}
+
+/* Stats Container - holds both stat columns */
+.worldbuilding .stats-container {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+}
+
+/* Vertical Stat Column - 57px × 304px */
+.worldbuilding .stat-vertical-column {
+  width: 57px;
+  height: 304px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.worldbuilding .stat-vertical-item {
+  width: 57px;
+  height: 60.4px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.worldbuilding .stat-v-label {
+  height: 20px; /* 33.33% of 60.4px */
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  padding: 0 2px;
+}
+
+.worldbuilding .stat-v-bottom {
+  display: flex;
+  flex: 1;
+  height: 40.4px; /* 66.67% of 60.4px */
+}
+
+.worldbuilding .stat-v-main {
+  width: 35px; /* 61.4% of 57px */
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.worldbuilding .stat-v-main input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: normal;
+  color: black;
+}
+
+.worldbuilding .stat-v-boxes {
+  width: 22px; /* 38.6% of 57px */
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s, width 0.3s;
+}
+
+.worldbuilding .stat-v-boxes.hidden {
+  display: none;
+}
+
+.worldbuilding .stat-v-main {
+  transition: width 0.3s, border-radius 0.3s;
+}
+
+.worldbuilding .stat-v-main.rollable {
+  cursor: pointer;
+}
+
+.worldbuilding .stat-v-main.rollable:hover {
+  background: #c9c9c9;
+}
+
+.worldbuilding .stat-v-main .stat-display {
+  font-size: 20px;
+  font-weight: normal;
+  color: black;
+}
+
+.worldbuilding .stat-v-boxes.hidden ~ .stat-v-main,
+.worldbuilding .stat-v-bottom:has(.stat-v-boxes.hidden) .stat-v-main {
+  width: 57px;
+  border-radius: 0 0 5px 5px;
+}
+
+.worldbuilding .stat-v-box {
+  flex: 1;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-left: none;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.worldbuilding .stat-v-box:first-child {
+  border-radius: 0;
+}
+
+.worldbuilding .stat-v-box:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+.worldbuilding .stat-v-box input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 8px;
+  font-weight: normal;
+  color: black;
+}
+
+.worldbuilding .stat-component {
+  width: 140px;
+  height: 100px;
+  position: relative;
+  display: flex;
+  gap: 5px;
+}
+
+/* Main Stat Box - 60.71% width (85px) */
+.worldbuilding .stat-main {
+  width: 85px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.worldbuilding .stat-label {
+  height: 34%;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  padding: 0 2px;
+}
+
+.worldbuilding .stat-value {
+  flex: 1;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.worldbuilding .stat-value input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 40px;
+  font-weight: normal;
+  color: black;
+}
+
+/* Tag components on the right - 35.71% width (50px) */
+.worldbuilding .stat-tags {
+  width: 50px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.worldbuilding .stat-tag {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.worldbuilding .stat-tag-label {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+}
+
+.worldbuilding .stat-tag-value {
+  flex: 1;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.worldbuilding .stat-tag-value input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: normal;
+  color: black;
+}
+
 .worldbuilding .attributes .attribute-control,
 .worldbuilding .attributes .group-control {
   flex: 0 0 20px;
