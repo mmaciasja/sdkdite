@@ -60,7 +60,7 @@ Hooks.once("init", async function() {
     ancestry: "ITEM.TypeAncestry",
     circle: "ITEM.TypeCircle",
     skill: "ITEM.TypeSkill",
-    experty: "ITEM.TypeExperty",
+    expertise: "ITEM.TypeExpertise",
     virtue: "ITEM.TypeVirtue"
   };
 
@@ -75,7 +75,7 @@ Hooks.once("init", async function() {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet("sdkdite", SimpleItemSheet, { 
     makeDefault: true,
-    types: ["ancestry", "circle", "skill", "experty", "virtue"],
+    types: ["ancestry", "circle", "skill", "expertise", "virtue"],
     label: "Default Item Sheet"
   });
 

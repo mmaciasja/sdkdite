@@ -5,38 +5,13 @@
             <h1 class="charname">
                 <input name="name" type="text" value="{{data.name}}" placeholder="Circle Name" />
             </h1>
-            
-            <div class="circle-stats">
-                <h3>Circle Stats</h3>
-                <div class="stats-grid">
-                    <div class="stat-field">
-                        <label>Strike</label>
-                        <input type="number" name="system.stats.strike" value="{{systemData.stats.strike}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Defense</label>
-                        <input type="number" name="system.stats.defense" value="{{systemData.stats.defense}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Will</label>
-                        <input type="number" name="system.stats.will" value="{{systemData.stats.will}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Insight</label>
-                        <input type="number" name="system.stats.insight" value="{{systemData.stats.insight}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Speed</label>
-                        <input type="number" name="system.stats.speed" value="{{systemData.stats.speed}}"/>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="stats">Circle Stats</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -45,6 +20,38 @@
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
             {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+        {{!-- Stats Tab --}}
+        <div class="tab" data-group="primary" data-tab="stats">
+            <div class="stats-container">
+                <div class="stat-section">
+                    <h3 class="section-title">⚔️ Combat Statistics</h3>
+                    <p class="section-description">Base combat stats provided by this circle</p>
+                    <div class="stats-grid">
+                        <div class="stat-input-group">
+                            <label>Strike</label>
+                            <input type="number" name="system.stats.strike" value="{{systemData.stats.strike}}" placeholder="0"/>
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Defense</label>
+                            <input type="number" name="system.stats.defense" value="{{systemData.stats.defense}}" placeholder="0"/>
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Will</label>
+                            <input type="number" name="system.stats.will" value="{{systemData.stats.will}}" placeholder="0"/>
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Insight</label>
+                            <input type="number" name="system.stats.insight" value="{{systemData.stats.insight}}" placeholder="0"/>
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Speed</label>
+                            <input type="number" name="system.stats.speed" value="{{systemData.stats.speed}}" placeholder="0"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </form>

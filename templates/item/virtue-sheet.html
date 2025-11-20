@@ -7,30 +7,27 @@
             </h1>
             
             <div class="virtue-fields">
-                <div class="field-group">
-                    <div class="field-item">
+                <div class="field-row">
+                    <div class="field-group">
                         <label>Branch</label>
-                        <input type="text" name="system.branch" value="{{systemData.branch}}" placeholder="Branch" />
+                        <select name="system.branch" data-dtype="String">
+                            <option value="">--Select Branch--</option>
+                            <option value="Legacy" {{#if (eq systemData.branch "Legacy")}}selected{{/if}}>Legacy</option>
+                            <option value="Omnifera" {{#if (eq systemData.branch "Omnifera")}}selected{{/if}}>Omnifera</option>
+                            <option value="Vulcanotech" {{#if (eq systemData.branch "Vulcanotech")}}selected{{/if}}>Vulcanotech</option>
+                            <option value="Veil" {{#if (eq systemData.branch "Veil")}}selected{{/if}}>Veil</option>
+                            <option value="Defect" {{#if (eq systemData.branch "Defect")}}selected{{/if}}>Defect</option>
+                        </select>
                     </div>
-                    <div class="field-item">
-                        <label>Name</label>
-                        <input type="text" name="system.name" value="{{systemData.name}}" placeholder="Virtue Name" />
-                    </div>
-                </div>
-                <div class="field-group">
-                    <div class="field-item">
+                    
+                    <div class="field-group">
                         <label>Type</label>
-                        <input type="text" name="system.type" value="{{systemData.type}}" placeholder="Type" />
-                    </div>
-                    <div class="field-item">
-                        <label>Requirement</label>
-                        <input type="text" name="system.requirement" value="{{systemData.requirement}}" placeholder="Requirement" />
-                    </div>
-                </div>
-                <div class="field-group full-width">
-                    <div class="field-item">
-                        <label>Mechanic</label>
-                        <input type="text" name="system.mechanic" value="{{systemData.mechanic}}" placeholder="Mechanic" />
+                        <select name="system.type" data-dtype="String">
+                            <option value="">--Select Type--</option>
+                            <option value="Fragmented" {{#if (eq systemData.type "Fragmented")}}selected{{/if}}>Fragmented</option>
+                            <option value="Kindred" {{#if (eq systemData.type "Kindred")}}selected{{/if}}>Kindred</option>
+                            <option value="Harmonized" {{#if (eq systemData.type "Harmonized")}}selected{{/if}}>Harmonized</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -40,6 +37,8 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="requirements">Requirements</a>
+        <a class="item" data-tab="mechanic">Mechanic</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -48,6 +47,90 @@
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
             {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+        {{!-- Requirements Tab --}}
+        <div class="tab" data-group="primary" data-tab="requirements">
+            <div class="requirements-container">
+                
+                {{!-- Minimum Stats Section --}}
+                <div class="req-section stats-section">
+                    <h3 class="req-section-title">📊 Minimum Stats Required</h3>
+                    <div class="stats-grid">
+                        <div class="stat-requirement">
+                            <label>Strength</label>
+                            <input type="number" name="system.requirements.stats.strength" value="{{systemData.requirements.stats.strength}}" placeholder="—" min="0"/>
+                        </div>
+                        <div class="stat-requirement">
+                            <label>Constitution</label>
+                            <input type="number" name="system.requirements.stats.constitution" value="{{systemData.requirements.stats.constitution}}" placeholder="—" min="0"/>
+                        </div>
+                        <div class="stat-requirement">
+                            <label>Dexterity</label>
+                            <input type="number" name="system.requirements.stats.dexterity" value="{{systemData.requirements.stats.dexterity}}" placeholder="—" min="0"/>
+                        </div>
+                        <div class="stat-requirement">
+                            <label>Charisma</label>
+                            <input type="number" name="system.requirements.stats.charisma" value="{{systemData.requirements.stats.charisma}}" placeholder="—" min="0"/>
+                        </div>
+                        <div class="stat-requirement">
+                            <label>Intelligence</label>
+                            <input type="number" name="system.requirements.stats.intelligence" value="{{systemData.requirements.stats.intelligence}}" placeholder="—" min="0"/>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Prerequisites Section --}}
+                <div class="req-section prereq-section">
+                    <h3 class="req-section-title">✓ Prerequisites</h3>
+                    <div class="prereq-grid">
+                        <div class="prereq-item">
+                            <label>Required Virtues</label>
+                            <input type="text" name="system.requirements.virtues" value="{{systemData.requirements.virtues}}" placeholder="None"/>
+                            <span class="help-text">Comma-separated names</span>
+                        </div>
+                        <div class="prereq-item">
+                            <label>Required Skills</label>
+                            <input type="text" name="system.requirements.skills" value="{{systemData.requirements.skills}}" placeholder="None"/>
+                            <span class="help-text">Comma-separated names</span>
+                        </div>
+                    </div>
+                </div>
+                
+                {{!-- Incompatibilities Section --}}
+                <div class="req-section incomp-section">
+                    <h3 class="req-section-title">⚠️ Branch Incompatibilities</h3>
+                    <p class="section-description">This virtue cannot be taken with the following branches:</p>
+                    <div class="branch-options">
+                        <label class="branch-option">
+                            <input type="checkbox" name="system.requirements.incompatibleBranches" value="Legacy" {{#if branchChecks.Legacy}}checked{{/if}}/>
+                            <span class="branch-name">Legacy</span>
+                        </label>
+                        <label class="branch-option">
+                            <input type="checkbox" name="system.requirements.incompatibleBranches" value="Omnifera" {{#if branchChecks.Omnifera}}checked{{/if}}/>
+                            <span class="branch-name">Omnifera</span>
+                        </label>
+                        <label class="branch-option">
+                            <input type="checkbox" name="system.requirements.incompatibleBranches" value="Vulcanotech" {{#if branchChecks.Vulcanotech}}checked{{/if}}/>
+                            <span class="branch-name">Vulcanotech</span>
+                        </label>
+                        <label class="branch-option">
+                            <input type="checkbox" name="system.requirements.incompatibleBranches" value="Veil" {{#if branchChecks.Veil}}checked{{/if}}/>
+                            <span class="branch-name">Veil</span>
+                        </label>
+                        <label class="branch-option">
+                            <input type="checkbox" name="system.requirements.incompatibleBranches" value="Defect" {{#if branchChecks.Defect}}checked{{/if}}/>
+                            <span class="branch-name">Defect</span>
+                        </label>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        {{!-- Mechanic Tab --}}
+        <div class="tab" data-group="primary" data-tab="mechanic">
+            {{editor mechanicHTML target="system.mechanic" button=true editable=editable engine="prosemirror"}}
         </div>
     </section>
 </form>

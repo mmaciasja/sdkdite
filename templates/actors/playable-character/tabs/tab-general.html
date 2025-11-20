@@ -6,35 +6,31 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Strength</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="strength">
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
+                    <input type="number" name="system.strength.level" value="{{systemData.strength.level}}" placeholder="-" />
+                </div>
+                {{else}}
+                <div class="stat-v-main rollable" data-stat="strength">
                     <span class="stat-display">{{systemData.strength.value}}</span>
                 </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.strength.mod" value="{{systemData.strength.mod}}" />
-                    </div>
-                    <div class="stat-v-box">
-                        <input type="number" name="system.strength.level" value="{{systemData.strength.level}}" />
-                    </div>
-                </div>
+                {{/if}}
             </div>
         </div>
 
         {{!-- Constitution --}}
         <div class="stat-vertical-item">
-            <div class="stat-v-label">Constitution</div>
+            <div class="stat-v-label">Const</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="constitution">
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
+                    <input type="number" name="system.constitution.level" value="{{systemData.constitution.level}}" placeholder="-" />
+                </div>
+                {{else}}
+                <div class="stat-v-main rollable" data-stat="constitution">
                     <span class="stat-display">{{systemData.constitution.value}}</span>
                 </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.constitution.mod" value="{{systemData.constitution.mod}}" />
-                    </div>
-                    <div class="stat-v-box">
-                        <input type="number" name="system.constitution.level" value="{{systemData.constitution.level}}" />
-                    </div>
-                </div>
+                {{/if}}
             </div>
         </div>
 
@@ -42,17 +38,15 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Dexterity</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="dexterity">
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
+                    <input type="number" name="system.dexterity.level" value="{{systemData.dexterity.level}}" placeholder="-" />
+                </div>
+                {{else}}
+                <div class="stat-v-main rollable" data-stat="dexterity">
                     <span class="stat-display">{{systemData.dexterity.value}}</span>
                 </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.dexterity.mod" value="{{systemData.dexterity.mod}}" />
-                    </div>
-                    <div class="stat-v-box">
-                        <input type="number" name="system.dexterity.level" value="{{systemData.dexterity.level}}" />
-                    </div>
-                </div>
+                {{/if}}
             </div>
         </div>
 
@@ -60,17 +54,15 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Charisma</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="charisma">
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
+                    <input type="number" name="system.charisma.level" value="{{systemData.charisma.level}}" placeholder="-" />
+                </div>
+                {{else}}
+                <div class="stat-v-main rollable" data-stat="charisma">
                     <span class="stat-display">{{systemData.charisma.value}}</span>
                 </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.charisma.mod" value="{{systemData.charisma.mod}}" />
-                    </div>
-                    <div class="stat-v-box">
-                        <input type="number" name="system.charisma.level" value="{{systemData.charisma.level}}" />
-                    </div>
-                </div>
+                {{/if}}
             </div>
         </div>
 
@@ -78,17 +70,15 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Intelligence</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="intelligence">
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
+                    <input type="number" name="system.intelligence.level" value="{{systemData.intelligence.level}}" placeholder="-" />
+                </div>
+                {{else}}
+                <div class="stat-v-main rollable" data-stat="intelligence">
                     <span class="stat-display">{{systemData.intelligence.value}}</span>
                 </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.intelligence.mod" value="{{systemData.intelligence.mod}}" />
-                    </div>
-                    <div class="stat-v-box">
-                        <input type="number" name="system.intelligence.level" value="{{systemData.intelligence.level}}" />
-                    </div>
-                </div>
+                {{/if}}
             </div>
         </div>
     </div>
@@ -99,13 +89,8 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Strike</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="strike">
+                <div class="stat-v-main rollable" data-stat="strike">
                     <span class="stat-display">{{systemData.strike.value}}</span>
-                </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.strike.mod" value="{{systemData.strike.mod}}" />
-                    </div>
                 </div>
             </div>
         </div>
@@ -114,13 +99,8 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Insight</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="insight">
+                <div class="stat-v-main rollable" data-stat="insight">
                     <span class="stat-display">{{systemData.insight.value}}</span>
-                </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.insight.mod" value="{{systemData.insight.mod}}" />
-                    </div>
                 </div>
             </div>
         </div>
@@ -129,13 +109,8 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Speed</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="speed">
+                <div class="stat-v-main rollable" data-stat="speed">
                     <span class="stat-display">{{systemData.speed.value}}</span>
-                </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.speed.mod" value="{{systemData.speed.mod}}" />
-                    </div>
                 </div>
             </div>
         </div>
@@ -144,13 +119,8 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Defense</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="defense">
+                <div class="stat-v-main rollable" data-stat="defense">
                     <span class="stat-display">{{systemData.defense.value}}</span>
-                </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.defense.mod" value="{{systemData.defense.mod}}" />
-                    </div>
                 </div>
             </div>
         </div>
@@ -159,13 +129,8 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Will</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main {{#unless editMode}}rollable{{/unless}}" data-stat="will">
+                <div class="stat-v-main rollable" data-stat="will">
                     <span class="stat-display">{{systemData.will.value}}</span>
-                </div>
-                <div class="stat-v-boxes {{#unless editMode}}hidden{{/unless}}">
-                    <div class="stat-v-box">
-                        <input type="number" name="system.will.mod" value="{{systemData.will.mod}}" />
-                    </div>
                 </div>
             </div>
         </div>

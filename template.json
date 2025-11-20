@@ -87,7 +87,7 @@
   }
 },
 "Item": {
-  "types": ["ancestry", "circle", "skill", "experty", "virtue"],
+  "types": ["ancestry", "circle", "skill", "expertise", "virtue"],
   "htmlFields": ["description"],
   "ancestry": {
     "description": "",
@@ -116,7 +116,7 @@
     "description": "",
     "img": ""
   },
-  "experty": {
+  "expertise": {
     "description": "",
     "img": ""
   },
@@ -124,9 +124,13 @@
     "description": "",
     "img": "",
     "branch": "",
-    "name": "",
     "type": "",
-    "requirement": "",
+    "requirements": {
+      "stats": {},
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": []
+    },
     "mechanic": ""
   }
 }

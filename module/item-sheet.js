@@ -45,6 +45,25 @@ export class SimpleItemSheet extends foundry.appv1.sheets.ItemSheet {
       async: true
     });
 
+    // For virtue items, enrich the mechanic field
+    if (this.item.type === "virtue") {
+      let mechanic = context.systemData.mechanic || "";
+      context.mechanicHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(mechanic, {
+        secrets: this.document.isOwner,
+        async: true
+      });
+      
+      // Prepare incompatible branches for easier checkbox rendering
+      const incompatibleBranches = context.systemData.requirements?.incompatibleBranches || [];
+      context.branchChecks = {
+        Legacy: incompatibleBranches.includes("Legacy"),
+        Omnifera: incompatibleBranches.includes("Omnifera"),
+        Vulcanotech: incompatibleBranches.includes("Vulcanotech"),
+        Veil: incompatibleBranches.includes("Veil"),
+        Defect: incompatibleBranches.includes("Defect")
+      };
+    }
+
     // For ancestry items, populate virtues with actual item data
     if (this.item.type === "ancestry" && context.systemData.virtues) {
       context.systemData.virtues = await Promise.all(
@@ -159,9 +178,17 @@ export class SimpleItemSheet extends foundry.appv1.sheets.ItemSheet {
   _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
     
+    // Handle checkbox arrays for virtue incompatible branches
+    if (this.item.type === "virtue") {
+      // Get all checkboxes with the same name
+      const checkboxes = this.form.querySelectorAll('input[name="system.requirements.incompatibleBranches"]:checked');
+      const incompatibleBranches = Array.from(checkboxes).map(cb => cb.value);
+      formData['system.requirements.incompatibleBranches'] = incompatibleBranches;
+    }
+    
     // Only apply EntitySheetHelper processing for items that use attributes/groups
-    // Ancestry items use their own data structure
-    if (this.item.type !== "ancestry") {
+    // Ancestry and virtue items use their own data structure
+    if (this.item.type !== "ancestry" && this.item.type !== "virtue") {
       formData = EntitySheetHelper.updateAttributes(formData, this.object);
       formData = EntitySheetHelper.updateGroups(formData, this.object);
     }

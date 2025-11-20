@@ -77,13 +77,15 @@
         <div class="stat-vertical-item">
             <div class="stat-v-label">Experience</div>
             <div class="stat-v-bottom">
-                <div class="stat-v-main">
-                    {{#if editMode}}
+                {{#if editMode}}
+                <div class="stat-v-main edit-mode">
                     <input type="number" name="system.experience.value" value="{{systemData.experience.value}}" />
-                    {{else}}
-                    <span class="stat-display">{{systemData.experience.value}}</span>
-                    {{/if}}
                 </div>
+                {{else}}
+                <div class="stat-v-main">
+                    <span class="stat-display">{{systemData.experience.value}}</span>
+                </div>
+                {{/if}}
             </div>
         </div>
 

@@ -26,7 +26,7 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/sdkdite/templates/item/ancestry-sheet.html",
     "systems/sdkdite/templates/item/circle-sheet.html",
     "systems/sdkdite/templates/item/skill-sheet.html",
-    "systems/sdkdite/templates/item/experty-sheet.html",
+    "systems/sdkdite/templates/item/expertise-sheet.html",
     "systems/sdkdite/templates/item/virtue-sheet.html",
     
     // Partial templates
