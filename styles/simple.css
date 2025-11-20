@@ -931,4 +931,42 @@
   min-height: 420px;
 }
 .sdkdite.sheet.item {
+  min-width: 400px;
+  min-height: 300px;
+}
+
+/* Circle Stats Styling */
+.sdkdite .circle-stats {
+  margin-top: 10px;
+}
+
+.sdkdite .circle-stats h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #AAA;
+  padding-bottom: 5px;
+}
+
+.sdkdite .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.sdkdite .stat-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sdkdite .stat-field label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.sdkdite .stat-field input {
+  padding: 5px;
+  border: 1px solid #AAA;
+  border-radius: 3px;
+  text-align: center;
 }

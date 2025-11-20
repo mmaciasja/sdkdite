@@ -5,8 +5,6 @@
             <h1 class="charname">
                 <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
             </h1>
-            
-            {{#if (eq data.type "item")}}
             <div class="resource">
                 <label>Quantity</label>
                 <input type="number" name="system.quantity" value="{{systemData.quantity}}"/>
@@ -15,35 +13,6 @@
                 <label>Weight</label>
                 <input type="number" name="system.weight" value="{{systemData.weight}}"/>
             </div>
-            {{/if}}
-            
-            {{#if (eq data.type "circle")}}
-            <div class="circle-stats">
-                <h3>Circle Stats</h3>
-                <div class="stats-grid">
-                    <div class="stat-field">
-                        <label>Strike</label>
-                        <input type="number" name="system.stats.strike" value="{{systemData.stats.strike}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Defense</label>
-                        <input type="number" name="system.stats.defense" value="{{systemData.stats.defense}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Will</label>
-                        <input type="number" name="system.stats.will" value="{{systemData.stats.will}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Insight</label>
-                        <input type="number" name="system.stats.insight" value="{{systemData.stats.insight}}"/>
-                    </div>
-                    <div class="stat-field">
-                        <label>Speed</label>
-                        <input type="number" name="system.stats.speed" value="{{systemData.stats.speed}}"/>
-                    </div>
-                </div>
-            </div>
-            {{/if}}
         </div>
     </header>
 

@@ -102,7 +102,14 @@
   },
   "circle": {
     "description": "",
-    "img": ""
+    "img": "",
+    "stats": {
+      "strike": 0,
+      "defense": 0,
+      "will": 0,
+      "insight": 0,
+      "speed": 0
+    }
   }
 }
 }
