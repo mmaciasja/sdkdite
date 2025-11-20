@@ -6,7 +6,8 @@
     "css": "gulp css",
     "watch": "gulp",
     "gulp": "gulp",
-    "build:packs": "fvtt package pack ancestries --in src/packs/ancestries --out packs/ancestries"
+    "build:db": "fvtt package workon sdkdite --type System && fvtt package pack ancestries --in packs/_source/ancestries --out packs",
+    "build:json": "fvtt package workon sdkdite --type System && fvtt package unpack ancestries --in packs/ancestries --out packs/_source/ancestries"
   },
   "browserslist": [
     "last 3 versions"
@@ -18,5 +19,7 @@
     "gulp": "^4.0.2",
     "gulp-less": "^4.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.2"
+  }
 }

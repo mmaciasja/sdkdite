@@ -1,0 +1,29 @@
+{
+  "_id": "katotero001",
+  "name": "Katotero",
+  "type": "ancestry",
+  "img": "systems/sdkdite/styles/static/compendium/ancestries/katotero/ancestry.svg",
+  "system": {
+    "description": "<p>Katotero are highly intelligent and curious, with natural affinity for magic and knowledge. They are scholars and seekers of truth.</p>",
+    "baseStats": {
+      "strength": 4,
+      "endurance": 4,
+      "dexterity": 5,
+      "charisma": 6,
+      "intelligence": 9
+    },
+    "virtues": []
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "sdkdite",
+    "systemVersion": "0.0.1",
+    "coreVersion": "13.350"
+  }
+}

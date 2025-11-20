@@ -11,7 +11,6 @@ import { SimpleActorSheet } from "./actor-playable-character.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
-import { initializeCompendiums } from "./compendium-init.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -137,14 +136,6 @@ Hooks.once("init", async function() {
 
   // Preload template partials
   await preloadHandlebarsTemplates();
-});
-
-/**
- * Ready hook - initialize compendiums
- */
-Hooks.once("ready", async function() {
-  // Initialize compendiums with default data
-  await initializeCompendiums();
 });
 
 /**

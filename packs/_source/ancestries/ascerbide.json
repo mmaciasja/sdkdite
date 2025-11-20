@@ -1,0 +1,29 @@
+{
+  "_id": "ascerbide001",
+  "name": "Ascerbide",
+  "type": "ancestry",
+  "img": "systems/sdkdite/styles/static/compendium/ancestries/ascerbide/ancestry.svg",
+  "system": {
+    "description": "<p>Ascerbide are incredibly resilient and hardy, able to withstand extreme conditions. They are known for their endurance and physical toughness.</p>",
+    "baseStats": {
+      "strength": 6,
+      "endurance": 8,
+      "dexterity": 4,
+      "charisma": 5,
+      "intelligence": 5
+    },
+    "virtues": []
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "sdkdite",
+    "systemVersion": "0.0.1",
+    "coreVersion": "13.350"
+  }
+}
