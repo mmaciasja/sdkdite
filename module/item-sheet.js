@@ -10,7 +10,7 @@ export class SimpleItemSheet extends foundry.appv1.sheets.ItemSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "item"],
+      classes: ["sdkdite", "sheet", "item"],
       template: "systems/sdkdite/templates/item-sheet.html",
       width: 520,
       height: 480,

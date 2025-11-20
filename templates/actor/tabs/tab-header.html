@@ -1,0 +1,99 @@
+{{!-- Sheet Header --}}
+<header class="sheet-header">
+    {{!-- Edit Mode Toggle --}}
+    <a class="edit-mode-toggle" title="{{#if editMode}}Switch to View Mode{{else}}Switch to Edit Mode{{/if}}">
+        {{#if editMode}}
+        <i class="fas fa-eye"></i>
+        {{else}}
+        <i class="fas fa-edit"></i>
+        {{/if}}
+    </a>
+    
+    {{!-- Profile Image --}}
+    <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+    
+    {{!-- Character Name and Items Container --}}
+    <div class="char-info-section">
+        {{!-- Character Name --}}
+        <div class="char-name-box">
+            {{#if editMode}}
+            <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
+            {{else}}
+            <span class="char-name-display">{{data.name}}</span>
+            {{/if}}
+        </div>
+        
+        {{!-- Ancestry, Circle, Descent Items Row --}}
+        <div class="char-items-row">
+            {{!-- Ancestry Image --}}
+            <div class="char-item-small" data-item-type="ancestry">
+                {{#if ancestryItem}}
+                <img src="{{ancestryItem.img}}" alt="{{ancestryItem.name}}" title="{{ancestryItem.name}}" class="item-image" />
+                {{else}}
+                {{#if editMode}}
+                <i class="fas fa-plus add-icon"></i>
+                {{/if}}
+                {{/if}}
+            </div>
+            
+            {{!-- Circle Image --}}
+            <div class="char-item-small" data-item-type="circle">
+                {{#if circleItem}}
+                <img src="{{circleItem.img}}" alt="{{circleItem.name}}" title="{{circleItem.name}}" class="item-image" />
+                {{else}}
+                {{#if editMode}}
+                <i class="fas fa-plus add-icon"></i>
+                {{/if}}
+                {{/if}}
+            </div>
+            
+            {{!-- Descent Stars --}}
+            <div class="char-item-small" data-item-type="descent">
+                {{#if descentStars}}
+                {{#each descentStars as |star|}}
+                <i class="fas fa-star{{#unless star}} far{{/unless}}"></i>
+                {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Health and Power Resources --}}
+    <div class="resources-container">
+        <div class="resource">
+            <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
+            <span> / </span>
+            <input type="number" name="system.health.max" value="{{systemData.health.max}}"/>
+        </div>
+        <div class="resource">
+            <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
+            <span> / </span>
+            <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+        </div>
+    </div>
+
+    {{!-- Experience Stats in Header --}}
+    <div class="experience-header-container">
+        <div class="stat-vertical-item">
+            <div class="stat-v-label">Experience</div>
+            <div class="stat-v-bottom">
+                <div class="stat-v-main">
+                    {{#if editMode}}
+                    <input type="number" name="system.experience.value" value="{{systemData.experience.value}}" />
+                    {{else}}
+                    <span class="stat-display">{{systemData.experience.value}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-vertical-item">
+            <div class="stat-v-label">Unused</div>
+            <div class="stat-v-bottom">
+                <div class="stat-v-main">
+                    <span class="stat-display">{{systemData.experience.unused}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

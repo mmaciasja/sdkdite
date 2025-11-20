@@ -31,7 +31,7 @@ Hooks.once("init", async function() {
     decimals: 2
   };
 
-  game.worldbuilding = {
+  game.sdkdite = {
     SimpleActor,
     createWorldbuildingMacro
   };
@@ -44,12 +44,12 @@ Hooks.once("init", async function() {
 
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  foundry.documents.collections.Actors.registerSheet("worldbuilding", SimpleActorSheet, { makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("sdkdite", SimpleActorSheet, { makeDefault: true });
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  foundry.documents.collections.Items.registerSheet("worldbuilding", SimpleItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("sdkdite", SimpleItemSheet, { makeDefault: true });
 
   // Register system settings
-  game.settings.register("worldbuilding", "macroShorthand", {
+  game.settings.register("sdkdite", "macroShorthand", {
     name: "SETTINGS.SimpleMacroShorthandN",
     hint: "SETTINGS.SimpleMacroShorthandL",
     scope: "world",
@@ -59,7 +59,7 @@ Hooks.once("init", async function() {
   });
 
   // Register initiative setting.
-  game.settings.register("worldbuilding", "initFormula", {
+  game.settings.register("sdkdite", "initFormula", {
     name: "SETTINGS.SimpleInitFormulaN",
     hint: "SETTINGS.SimpleInitFormulaL",
     scope: "world",
@@ -70,7 +70,7 @@ Hooks.once("init", async function() {
   });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("worldbuilding", "initFormula");
+  const initFormula = game.settings.get("sdkdite", "initFormula");
   _simpleUpdateInit(initFormula);
 
   /**
@@ -118,7 +118,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("worldbuilding", "isTemplate", true);
+      actor.setFlag("sdkdite", "isTemplate", true);
     }
   });
 
@@ -132,7 +132,7 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const actor = game.actors.get(li.data("documentId"));
-      actor.setFlag("worldbuilding", "isTemplate", false);
+      actor.setFlag("sdkdite", "isTemplate", false);
     }
   });
 });
@@ -152,7 +152,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data("documentId"));
-      item.setFlag("worldbuilding", "isTemplate", true);
+      item.setFlag("sdkdite", "isTemplate", true);
     }
   });
 
@@ -166,7 +166,7 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
     },
     callback: li => {
       const item = game.items.get(li.data("documentId"));
-      item.setFlag("worldbuilding", "isTemplate", false);
+      item.setFlag("sdkdite", "isTemplate", false);
     }
   });
 });

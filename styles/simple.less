@@ -1,8 +1,9 @@
-.worldbuilding {
+.sdkdite {
   .window-content {
     height: 100%;
     padding: 5px;
     overflow-y: hidden;
+    background: white;
   }
 
   form {
@@ -10,18 +11,23 @@
   }
 
   .sheet-header {
-    flex: 0 0 100px;
-    overflow: hidden;
+    flex: 0 0 auto;
+    overflow: visible;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items: flex-end;
     margin-bottom: 10px;
+    position: relative;
+    gap: 10px;
 
     .profile-img {
-      flex: 0 0 100px;
-      height: 100px;
-      margin-right: 10px;
+      flex: 0 0 60px;
+      height: 60px;
+      background: #d9d9d9;
+      border: 1px solid black;
+      margin-top: 0;
     }
 
     .header-fields {
@@ -42,6 +48,109 @@
     }
   }
 
+  /* Character Info Grid - Name/Ancestry/Descent/Circle */
+  .char-info-grid {
+    width: 154px;
+    height: 41px;
+    display: grid;
+    grid-template-columns: 77px 77px;
+    grid-template-rows: repeat(4, 10px);
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .char-info-row {
+    display: contents;
+  }
+
+  .char-info-label {
+    background: #d9d9d9;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    padding: 1px 3px;
+    line-height: 1;
+  }
+
+  .char-info-value {
+    background: #d9d9d9;
+    border: 1px solid black;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 3px;
+  }
+
+  /* Image boxes for ancestry, descent, circle */
+  .char-info-image-box {
+    grid-column: 1 / -1;
+    background: #d9d9d9;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 3px;
+    overflow: hidden;
+    cursor: pointer;
+    
+    .item-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .placeholder-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: black;
+      text-align: center;
+    }
+  }
+
+  /* Descent stars styling */
+  .descent-stars {
+    display: flex;
+    gap: 2px;
+    
+    i {
+      font-size: 8px;
+      color: black;
+    }
+  }
+
+  /* First row - Name */
+  .char-info-row:nth-child(1) .char-info-label {
+    border-radius: 5px 0 0 0;
+  }
+
+  /* Last row - handled by image-box border-radius */
+
+  .char-info-value input {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: transparent;
+    border: none;
+    font-size: 7px;
+    font-weight: 600;
+    color: black;
+    padding: 1px 3px;
+    line-height: 1;
+  }
+
+  /* Resources Container */
+  .resources-container {
+    display: none;
+  }
+  
   .resource {
     width: 50%;
     height: 40px;
@@ -54,6 +163,338 @@
     }
   }
 
+  /* Experience Container in Header */
+  .experience-header-container {
+    margin-left: auto;
+    margin-top: 0;
+    display: flex;
+    gap: 15px;
+
+    .stat-vertical-item {
+      width: 57px;
+      height: 60.4px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-v-label {
+      height: 20px;
+      background: #d9d9d9;
+      border: 1px solid black;
+      border-radius: 5px 5px 0 0;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-v-bottom {
+      flex: 1;
+      display: flex;
+    }
+
+    .stat-v-main {
+      width: 57px;
+      background: #d9d9d9;
+      border: 1px solid black;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* Health and Power in Header */
+  .health-power-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 0;
+
+    .stat-horizontal-item {
+      width: 97px;
+      height: 27.7px;
+      display: flex;
+    }
+
+    .stat-h-label {
+      width: 36px;
+      background: #d9d9d9;
+      border: 1px solid black;
+      border-radius: 5px 0 0 5px;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-h-main {
+      flex: 1;
+      background: #d9d9d9;
+      border: 1px solid black;
+      border-left: none;
+      border-radius: 0 5px 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background: transparent;
+        border: none;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* Character Stats Components - Figma Design */
+  .char-attributes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  /* Stats Container - holds both stat columns */
+  .stats-container {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+  }
+
+  /* Vertical Stat Column - 57px × 304px */
+  .stat-vertical-column {
+    width: 57px;
+    height: 304px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .stat-vertical-item {
+    width: 57px;
+    height: 60.4px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .stat-v-label {
+    height: 20px;
+    background: #d9d9d9;
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    color: black;
+    text-align: center;
+    padding: 0 2px;
+  }
+
+  .stat-v-bottom {
+    display: flex;
+    flex: 1;
+    height: 40.4px;
+  }
+
+  .stat-v-main {
+    width: 35px;
+    background: #d9d9d9;
+    border: 1px solid black;
+    border-top: none;
+    border-radius: 0 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s, border-radius 0.3s;
+
+    &.rollable {
+      cursor: pointer;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      font-weight: normal;
+      color: black;
+    }
+
+    .stat-display {
+      font-size: 20px;
+      font-weight: normal;
+      color: black;
+    }
+  }
+
+  .stat-v-boxes {
+    width: 22px;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.3s, width 0.3s;
+
+    &.hidden {
+      display: none;
+
+      ~ .stat-v-main {
+        width: 57px;
+        border-radius: 0 0 5px 5px;
+      }
+    }
+  }
+
+  .stat-v-bottom:has(.stat-v-boxes.hidden) .stat-v-main {
+    width: 57px;
+    border-radius: 0 0 5px 5px;
+  }
+
+  .stat-v-box {
+    flex: 1;
+    background: #d9d9d9;
+    border: 1px solid black;
+    border-left: none;
+    border-top: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      border-radius: 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 0;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 8px;
+      font-weight: normal;
+      color: black;
+    }
+  }
+
+  .stat-component {
+    width: 140px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    gap: 5px;
+  }
+
+  .stat-main {
+    width: 85px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-label {
+    height: 34%;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    padding: 0 2px;
+  }
+
+  .stat-value {
+    flex: 1;
+    background: white;
+    border: 1px solid black;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 30px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+
+  .stat-boxes {
+    width: 55px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-box {
+    flex: 1;
+    background: white;
+    border: 1px solid black;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      border-radius: 0 5px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 0;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: transparent;
+      border: none;
+      font-size: 12px;
+      font-weight: normal;
+      color: black;
+    }
+  }
+
   /* Sheet Tabs */
   .tabs {
     flex: 0 0 40px;
@@ -63,19 +504,61 @@
     .item {
       line-height: 40px;
       font-weight: bold;
+
+      &.active {
+        text-decoration: underline;
+        text-shadow: none;
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+
+  /* Tab Visibility Toggle Icon */
+  .tab-visibility-toggle {
+    margin-left: 5px;
+    font-size: 0.8em;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    pointer-events: all;
+    z-index: 10;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  /* Edit Mode Toggle Button */
+  .edit-mode-toggle {
+    margin-left: auto;
+    padding: 0 10px;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #4b4a44;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #000;
+      text-shadow: 0 0 8px red;
     }
 
-    .item.active {
-      text-decoration: underline;
-      text-shadow: none;
+    i {
+      margin-right: 5px;
     }
   }
 
   .sheet-body {
     overflow: hidden;
+    background: white;
+
     .tab {
       height: 100%;
       overflow-y: auto;
+      background: white;
     }
   }
 
@@ -279,13 +762,13 @@
   }
 }
 
-.worldbuilding.sheet.actor {
+.sdkdite.sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
 
 
-.worldbuilding.sheet.item {
+.sdkdite.sheet.item {
   min-width: 460px;
   min-height: 400px;
 }

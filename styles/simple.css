@@ -1,144 +1,548 @@
-.worldbuilding {
+.sdkdite {
   /* Sheet Tabs */
   /* Items List */
   /* Attributes */
 }
-.worldbuilding .window-content {
+.sdkdite .window-content {
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
   background: white;
 }
-.worldbuilding form {
+.sdkdite form {
   height: 100%;
 }
-.worldbuilding .sheet-header {
-  flex: 0 0 180px;
+.sdkdite .sheet-header {
+  flex: 0 0 auto;
   overflow: visible;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
+  align-items: flex-end;
   margin-bottom: 10px;
+  position: relative;
+  gap: 10px;
+  padding-right: 60px;
 }
-.worldbuilding .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
+
+.sdkdite .sheet-header .profile-img {
+  flex: 0 0 60px;
+  height: 60px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  align-self: flex-end;
 }
-.worldbuilding .sheet-header .header-fields {
-  flex: 1;
-  height: auto;
-  min-height: 100px;
+
+/* Character Info Section - Name + Items */
+.sdkdite .char-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-self: flex-end;
 }
-.worldbuilding .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 5px 0;
-  border-bottom: 0;
+
+.sdkdite .char-name-box {
+  width: 148px;
+  height: 11px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
 }
-.worldbuilding .sheet-header h1.charname input {
+
+.sdkdite .char-name-box input {
   width: 100%;
   height: 100%;
-  margin: 0;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
 }
-.worldbuilding .resource {
+
+.sdkdite .char-name-box .char-name-display {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  line-height: 1;
+}
+
+.sdkdite .char-items-row {
+  display: flex;
+  gap: 4px;
+}
+
+.sdkdite .char-item-small {
+  width: 35px;
+  height: 35px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sdkdite .char-item-small .item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sdkdite .char-item-small .add-icon {
+  font-size: 16px;
+  color: #666666;
+  cursor: pointer;
+}
+
+.sdkdite .char-item-small .placeholder-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  line-height: 1;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Descent stars styling */
+.sdkdite .char-item-small[data-item-type="descent"] {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdkdite .char-item-small[data-item-type="descent"] i {
+  font-size: 8px;
+  color: black;
+}
+
+/* Old styles - keeping for compatibility */
+.sdkdite .char-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 0;
+}
+
+.sdkdite .char-name-input {
+  width: 190px;
+  height: 30px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 5px;
+}
+
+.sdkdite .char-name-input input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+}
+
+.sdkdite .char-items-row {
+  display: flex;
+  gap: 5px;
+}
+
+.sdkdite .char-item-box {
+  width: 60px;
+  height: 60px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sdkdite .char-item-box .item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sdkdite .char-item-box .placeholder-square {
+  width: 50px;
+  height: 50px;
+  background: #a0a0a0;
+  border: 1px solid #808080;
+  border-radius: 3px;
+}
+
+/* Descent stars styling */
+.sdkdite .descent-stars {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdkdite .descent-stars i {
+  font-size: 10px;
+  color: black;
+}
+
+/* Old char-info-grid styles - keeping for backwards compatibility */
+.sdkdite .char-info-grid {
+  width: 154px;
+  height: 41px;
+  display: grid;
+  grid-template-columns: 77px 77px;
+  grid-template-rows: repeat(4, 10px);
+  gap: 0;
+  margin-top: 0;
+}
+
+.sdkdite .char-info-row {
+  display: contents;
+}
+
+.sdkdite .char-info-label {
+  background: #d9d9d9;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+  padding: 1px 3px;
+  line-height: 1;
+}
+
+.sdkdite .char-info-value {
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-left: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 3px;
+}
+
+/* Image boxes for ancestry, descent, circle */
+.sdkdite .char-info-image-box {
+  grid-column: 1 / -1;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 3px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sdkdite .char-info-image-box .item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sdkdite .char-info-image-box .placeholder-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: black;
+  text-align: center;
+}
+
+/* Descent stars styling */
+.sdkdite .descent-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.sdkdite .descent-stars i {
+  font-size: 8px;
+  color: black;
+}
+
+/* First row - Name */
+.sdkdite .char-info-row:nth-child(1) .char-info-label {
+  border-radius: 5px 0 0 0;
+}
+
+/* Last row - handled by image-box border-radius */
+
+.sdkdite .char-info-value input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 7px;
+  font-weight: 600;
+  color: black;
+  padding: 1px 3px;
+  line-height: 1;
+}
+
+/* Resources Container */
+.sdkdite .resources-container {
+  display: none;
+}
+
+.sdkdite .resource {
   width: 50%;
   height: 40px;
   margin-top: 10px;
   float: left;
   text-align: center;
 }
-.worldbuilding .resource input {
+
+.sdkdite .resource input {
   width: 100px;
   height: 28px;
 }
 
 /* Experience Container in Header */
-.worldbuilding .header-fields .experience-container {
+.sdkdite .experience-header-container {
+  margin-left: auto;
   display: flex;
   gap: 15px;
-  justify-content: flex-end;
-  margin-top: 10px;
-  clear: both;
+  align-self: flex-end;
 }
 
-.worldbuilding .header-fields .experience-container .stat-v-main {
+.sdkdite .experience-header-container .stat-vertical-item {
   width: 57px;
-  border-radius: 0 0 5px 5px;
+  height: 60.4px;
+  display: flex;
+  flex-direction: column;
 }
 
-.worldbuilding .tabs {
+.sdkdite .experience-header-container .stat-v-label {
+  height: 20px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-radius: 5px 5px 0 0;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdkdite .experience-header-container .stat-v-bottom {
+  flex: 1;
+  display: flex;
+}
+
+.sdkdite .experience-header-container .stat-v-main {
+  width: 57px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdkdite .experience-header-container .stat-v-main input,
+.sdkdite .experience-header-container .stat-v-main .stat-display {
+  font-size: 20px;
+}
+
+/* Divider Line with Labels */
+.sdkdite .sheet-divider {
+  position: relative;
+  height: 15px;
+  margin-bottom: 10px;
+}
+
+.sdkdite .divider-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: black;
+}
+
+.sdkdite .divider-labels {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d9d9d9;
+  border: 1px solid black;
+  padding: 0 10px;
+}
+
+.sdkdite .divider-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  background: white;
+  padding: 0 5px;
+}
+
+.sdkdite .divider-toggle {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+  background: white;
+  padding: 0 5px;
+}
+
+.sdkdite .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
-.worldbuilding .tabs .item {
+
+.sdkdite .tabs::-webkit-scrollbar {
+  height: 8px;
+}
+
+.sdkdite .tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sdkdite .tabs::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.sdkdite .tabs:hover::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.sdkdite .tabs:hover::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.sdkdite .tabs .item {
   line-height: 40px;
   font-weight: bold;
+  position: relative;
+  flex-shrink: 0;
 }
-.worldbuilding .tabs .item.active {
+.sdkdite .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
+.sdkdite .tabs .item.hidden {
+  display: none;
+}
+
+/* Tab Visibility Toggle Icon */
+.sdkdite .tab-visibility-toggle {
+  margin-left: 5px;
+  font-size: 0.8em;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  pointer-events: all;
+  z-index: 10;
+}
+
+.sdkdite .tab-visibility-toggle:hover {
+  opacity: 1;
+}
 
 /* Edit Mode Toggle Button */
-.worldbuilding .edit-mode-toggle {
-  margin-left: auto;
-  padding: 0 10px;
-  line-height: 40px;
-  font-weight: bold;
+.sdkdite .edit-mode-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 8px 10px;
   cursor: pointer;
   color: #4b4a44;
-  transition: color 0.2s;
+  transition: all 0.2s;
+  font-size: 18px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.worldbuilding .edit-mode-toggle:hover {
+.sdkdite .edit-mode-toggle:hover {
   color: #000;
-  text-shadow: 0 0 8px red;
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
 }
 
-.worldbuilding .edit-mode-toggle i {
-  margin-right: 5px;
-}
-
-.worldbuilding .sheet-body {
+.sdkdite .sheet-body {
   overflow: hidden;
   background: white;
 }
-.worldbuilding .sheet-body .tab {
+.sdkdite .sheet-body .tab {
   height: 100%;
+  overflow-x: auto;
   overflow-y: auto;
   background: white;
 }
-.worldbuilding .editor,
-.worldbuilding .editor-content {
+.sdkdite .editor,
+.sdkdite .editor-content {
   height: 100%;
 }
-.worldbuilding .item-list {
+.sdkdite .item-list {
   list-style: none;
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
 }
-.worldbuilding .item-list .item {
+.sdkdite .item-list .item {
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
   border-bottom: 1px solid #BBB;
   align-items: stretch;
 }
-.worldbuilding .item-list .item img {
+.sdkdite .item-list .item img {
   flex: 0 0 24px;
   margin-right: 5px;
 }
-.worldbuilding .item-list .item-name {
+.sdkdite .item-list .item-name {
   margin: 0;
 }
-.worldbuilding .item-list .item-controls {
+.sdkdite .item-list .item-controls {
   flex: 0 0 36px;
 }
-.worldbuilding .item-list .item-buttons {
+.sdkdite .item-list .item-buttons {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -146,18 +550,18 @@
   flex: 2;
   justify-content: flex-start;
 }
-.worldbuilding .item-list .item-button {
+.sdkdite .item-list .item-button {
   line-height: 1;
   font-size: 11px;
   flex: none;
   width: auto;
 }
-.worldbuilding .attributes {
+.sdkdite .attributes {
   position: relative;
 }
 
 /* Character Stats Components - Figma Design */
-.worldbuilding .char-attributes-grid {
+.sdkdite .char-attributes-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -165,7 +569,7 @@
 }
 
 /* Stats Container - holds both stat columns */
-.worldbuilding .stats-container {
+.sdkdite .stats-container {
   display: flex;
   gap: 15px;
   padding: 15px;
@@ -173,7 +577,7 @@
 }
 
 /* Vertical Stat Column - 57px × 304px */
-.worldbuilding .stat-vertical-column {
+.sdkdite .stat-vertical-column {
   width: 57px;
   height: 304px;
   display: flex;
@@ -182,7 +586,7 @@
   margin: 0;
 }
 
-.worldbuilding .stat-vertical-item {
+.sdkdite .stat-vertical-item {
   width: 57px;
   height: 60.4px;
   display: flex;
@@ -190,9 +594,9 @@
   margin-bottom: 0;
 }
 
-.worldbuilding .stat-v-label {
+.sdkdite .stat-v-label {
   height: 20px; /* 33.33% of 60.4px */
-  background: white;
+  background: #d9d9d9;
   border: 1px solid black;
   border-radius: 5px 5px 0 0;
   display: flex;
@@ -206,15 +610,15 @@
   padding: 0 2px;
 }
 
-.worldbuilding .stat-v-bottom {
+.sdkdite .stat-v-bottom {
   display: flex;
   flex: 1;
   height: 40.4px; /* 66.67% of 60.4px */
 }
 
-.worldbuilding .stat-v-main {
+.sdkdite .stat-v-main {
   width: 35px; /* 61.4% of 57px */
-  background: white;
+  background: #d9d9d9;
   border: 1px solid black;
   border-top: none;
   border-radius: 0 0 0 5px;
@@ -223,7 +627,7 @@
   justify-content: center;
 }
 
-.worldbuilding .stat-v-main input {
+.sdkdite .stat-v-main input {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -234,44 +638,44 @@
   color: black;
 }
 
-.worldbuilding .stat-v-boxes {
+.sdkdite .stat-v-boxes {
   width: 22px; /* 38.6% of 57px */
   display: flex;
   flex-direction: column;
   transition: opacity 0.3s, width 0.3s;
 }
 
-.worldbuilding .stat-v-boxes.hidden {
+.sdkdite .stat-v-boxes.hidden {
   display: none;
 }
 
-.worldbuilding .stat-v-main {
+.sdkdite .stat-v-main {
   transition: width 0.3s, border-radius 0.3s;
 }
 
-.worldbuilding .stat-v-main.rollable {
+.sdkdite .stat-v-main.rollable {
   cursor: pointer;
 }
 
-.worldbuilding .stat-v-main.rollable:hover {
+.sdkdite .stat-v-main.rollable:hover {
   background: #f5f5f5;
 }
 
-.worldbuilding .stat-v-main .stat-display {
+.sdkdite .stat-v-main .stat-display {
   font-size: 20px;
   font-weight: normal;
   color: black;
 }
 
-.worldbuilding .stat-v-boxes.hidden ~ .stat-v-main,
-.worldbuilding .stat-v-bottom:has(.stat-v-boxes.hidden) .stat-v-main {
+.sdkdite .stat-v-boxes.hidden ~ .stat-v-main,
+.sdkdite .stat-v-bottom:has(.stat-v-boxes.hidden) .stat-v-main {
   width: 57px;
   border-radius: 0 0 5px 5px;
 }
 
-.worldbuilding .stat-v-box {
+.sdkdite .stat-v-box {
   flex: 1;
-  background: white;
+  background: #d9d9d9;
   border: 1px solid black;
   border-left: none;
   border-top: none;
@@ -280,15 +684,15 @@
   justify-content: center;
 }
 
-.worldbuilding .stat-v-box:first-child {
+.sdkdite .stat-v-box:first-child {
   border-radius: 0;
 }
 
-.worldbuilding .stat-v-box:last-child {
+.sdkdite .stat-v-box:last-child {
   border-radius: 0 0 5px 0;
 }
 
-.worldbuilding .stat-v-box input {
+.sdkdite .stat-v-box input {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -299,7 +703,7 @@
   color: black;
 }
 
-.worldbuilding .stat-component {
+.sdkdite .stat-component {
   width: 140px;
   height: 100px;
   position: relative;
@@ -308,14 +712,14 @@
 }
 
 /* Main Stat Box - 60.71% width (85px) */
-.worldbuilding .stat-main {
+.sdkdite .stat-main {
   width: 85px;
   height: 100px;
   display: flex;
   flex-direction: column;
 }
 
-.worldbuilding .stat-label {
+.sdkdite .stat-label {
   height: 34%;
   background: white;
   border: 1px solid black;
@@ -331,7 +735,7 @@
   padding: 0 2px;
 }
 
-.worldbuilding .stat-value {
+.sdkdite .stat-value {
   flex: 1;
   background: white;
   border: 1px solid black;
@@ -342,7 +746,7 @@
   justify-content: center;
 }
 
-.worldbuilding .stat-value input {
+.sdkdite .stat-value input {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -354,7 +758,7 @@
 }
 
 /* Tag components on the right - 35.71% width (50px) */
-.worldbuilding .stat-tags {
+.sdkdite .stat-tags {
   width: 50px;
   height: 100px;
   display: flex;
@@ -362,13 +766,13 @@
   gap: 4px;
 }
 
-.worldbuilding .stat-tag {
+.sdkdite .stat-tag {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.worldbuilding .stat-tag-label {
+.sdkdite .stat-tag-label {
   height: 40%;
   display: flex;
   align-items: center;
@@ -380,7 +784,7 @@
   text-align: center;
 }
 
-.worldbuilding .stat-tag-value {
+.sdkdite .stat-tag-value {
   flex: 1;
   background: #d9d9d9;
   border: 1px solid black;
@@ -390,7 +794,7 @@
   justify-content: center;
 }
 
-.worldbuilding .stat-tag-value input {
+.sdkdite .stat-tag-value input {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -401,14 +805,14 @@
   color: black;
 }
 
-.worldbuilding .attributes .attribute-control,
-.worldbuilding .attributes .group-control {
+.sdkdite .attributes .attribute-control,
+.sdkdite .attributes .group-control {
   flex: 0 0 20px;
   text-align: center;
   line-height: 28px;
   border: none;
 }
-.worldbuilding .attributes .attribute-roll {
+.sdkdite .attributes .attribute-roll {
   flex: 0 0 20px;
   text-align: center;
   border-bottom: none;
@@ -416,11 +820,11 @@
   align-items: center;
   justify-content: center;
 }
-.worldbuilding .attributes .group-prefix {
+.sdkdite .attributes .group-prefix {
   height: 31px;
   margin-right: 10px;
 }
-.worldbuilding .attributes .button {
+.sdkdite .attributes .button {
   width: 100%;
   flex: 1;
   margin: 0;
@@ -431,11 +835,11 @@
   line-height: 28px;
   display: block;
 }
-.worldbuilding .attributes .attribute-key {
+.sdkdite .attributes .attribute-key {
   background: transparent;
   border: none;
 }
-.worldbuilding .attributes-header {
+.sdkdite .attributes-header {
   position: sticky;
   top: 0;
   left: 0;
@@ -449,12 +853,12 @@
   font-weight: bold;
   z-index: 1;
 }
-.worldbuilding .attributes-list {
+.sdkdite .attributes-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.worldbuilding .attributes-list li > * {
+.sdkdite .attributes-list li > * {
   margin: 0 3px;
   height: 28px;
   line-height: 24px;
@@ -463,47 +867,47 @@
   border-radius: 0;
   border-bottom: 1px solid #AAA;
 }
-.worldbuilding .attributes-list .attribute-col label {
+.sdkdite .attributes-list .attribute-col label {
   font-size: 10px;
   text-align: center;
   line-height: 1;
 }
-.worldbuilding .attributes-list .attribute-col input {
+.sdkdite .attributes-list .attribute-col input {
   font-size: 11px;
   text-align: center;
   line-height: 1;
   height: 50%;
 }
-.worldbuilding .attribute input[type="text"]::placeholder,
-.worldbuilding .group-header input[type="text"]::placeholder {
+.sdkdite .attribute input[type="text"]::placeholder,
+.sdkdite .group-header input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 }
-.worldbuilding .attribute input[type="text"]:focus::placeholder,
-.worldbuilding .group-header input[type="text"]:focus::placeholder {
+.sdkdite .attribute input[type="text"]:focus::placeholder,
+.sdkdite .group-header input[type="text"]:focus::placeholder {
   opacity: 1;
 }
-.worldbuilding .group-controls {
+.sdkdite .group-controls {
   margin: 5px;
 }
-.worldbuilding .groups-list {
+.sdkdite .groups-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.worldbuilding .group {
+.sdkdite .group {
   margin: 5px 0 0;
   padding: 0;
 }
-.worldbuilding .group-header {
+.sdkdite .group-header {
   align-items: center;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid #AAA;
   border-radius: 2px;
   padding: 2px 5px;
 }
-.worldbuilding .group-key,
-.worldbuilding .group-label {
+.sdkdite .group-key,
+.sdkdite .group-label {
   font-weight: bold;
   border: none;
   border-bottom: 1px solid #AAA;
@@ -511,22 +915,19 @@
   border-radius: 0;
   margin-right: 6px;
 }
-.worldbuilding .group-key {
+.sdkdite .group-key {
   opacity: 0.75;
 }
-.worldbuilding .group-label {
+.sdkdite .group-label {
   flex: 2;
 }
-.worldbuilding .group-dtype {
+.sdkdite .group-dtype {
   height: 24px;
   flex: 0 0 116px;
   margin: 0 5px;
 }
-.worldbuilding.sheet.actor {
+.sdkdite.sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
-.worldbuilding.sheet.item {
-  min-width: 460px;
-  min-height: 400px;
-}
+.sdkdite.sheet.item {

@@ -1,9 +1,22 @@
 {
 "Actor": {
   "types": ["character"],
-  "htmlFields": ["biography"],
+  "htmlFields": ["biography", "diary"],
   "character": {
     "biography": "",
+    "diary": "",
+    "ancestryId": "",
+    "circleId": "",
+    "tabs": {
+      "skills": true,
+      "combat": true,
+      "mask": true,
+      "rhapsodies": true,
+      "vulcanotech": true,
+      "almakathir": true,
+      "omniferis": true,
+      "diary": true
+    },
     "health": {
       "value": 10,
       "min": 0,
@@ -74,7 +87,7 @@
   }
 },
 "Item": {
-  "types": ["item"],
+  "types": ["item", "ancestry", "circle"],
   "htmlFields": ["description"],
   "item": {
     "description": "",
@@ -82,6 +95,14 @@
     "weight": 0,
     "attributes": {},
     "groups": {}
+  },
+  "ancestry": {
+    "description": "",
+    "img": ""
+  },
+  "circle": {
+    "description": "",
+    "img": ""
   }
 }
 }

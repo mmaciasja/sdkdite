@@ -9,6 +9,10 @@
   "SIMPLE.ItemDelete": "Delete Item",
   "SIMPLE.ItemNew": "New Item",
 
+  "ITEM.TypeItem": "Item",
+  "ITEM.TypeAncestry": "Ancestro",
+  "ITEM.TypeCircle": "Círculo",
+
   "SIMPLE.NotifyInitFormulaUpdated": "Initiative formula was updated to",
   "SIMPLE.NotifyInitFormulaInvalid": "Initiative formula was invalid",
   "SIMPLE.NotifyGroupDuplicate": "Attribute group already exists.",
@@ -22,9 +26,9 @@
   "SIMPLE.ResourceValue": "Value",
   "SIMPLE.ResourceMax": "Max",
 
-  "SIMPLE.DefineTemplate": "Define as Template",
-  "SIMPLE.UnsetTemplate": "Unset Template",
-  "SIMPLE.NoTemplate": "No Template",
+  "SIMPLE.DefineTemplate": "Definir como Plantilla",
+  "SIMPLE.UnsetTemplate": "Quitar Plantilla",
+  "SIMPLE.NoTemplate": "PJ",
 
   "SIMPLE.AttributeKey": "Attribute Key",
   "SIMPLE.AttributeValue": "Value",

@@ -116,11 +116,11 @@ export async function rollStat(actor, statName, statValue, statMod) {
           
           let formula;
           if(differenceAdvDis == 0){
-            formula = `${threshold}-(${totalDices}${dieSize})+${statValue}+${statMod}+${modifier}`;
+            formula = `${threshold}-(${totalDices}${dieSize})+${modifier}`;
           } else if(differenceAdvDis > 0){
-            formula = `${threshold}-(${totalDices}${dieSize}kl2)+${statValue}+${statMod}+${modifier}`;
+            formula = `${threshold}-(${totalDices}${dieSize}kl2)+${modifier}`;
           } else {
-            formula = `${threshold}-(${totalDices}${dieSize}kh2)+${statValue}+${statMod}+${modifier}`;
+            formula = `${threshold}-(${totalDices}${dieSize}kh2)+${modifier}`;
           }
           
           // Evaluate and send roll

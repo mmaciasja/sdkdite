@@ -1,0 +1,110 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    {{> "systems/sdkdite/templates/actor/tabs/tab-header.html"}}
+
+    {{!-- Unified Navigation Toolbar --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="general">
+            General
+            {{#if editMode}}
+            <i class="fas fa-eye tab-visibility-toggle" data-tab-target="general" title="Always visible"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.skills}}hidden{{/unless}}{{/if}}" data-tab="skills">
+            Skills
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.skills}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="skills" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.combat}}hidden{{/unless}}{{/if}}" data-tab="combat">
+            Combat
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.combat}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="combat" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.mask}}hidden{{/unless}}{{/if}}" data-tab="mask">
+            Mask
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.mask}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="mask" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.rhapsodies}}hidden{{/unless}}{{/if}}" data-tab="rhapsodies">
+            Rhapsodies
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.rhapsodies}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="rhapsodies" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.vulcanotech}}hidden{{/unless}}{{/if}}" data-tab="vulcanotech">
+            Vulcanotech
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.vulcanotech}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="vulcanotech" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.almakathir}}hidden{{/unless}}{{/if}}" data-tab="almakathir">
+            Almakathir
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.almakathir}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="almakathir" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.omniferis}}hidden{{/unless}}{{/if}}" data-tab="omniferis">
+            Omniferis
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.omniferis}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="omniferis" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+        <a class="item {{#if editMode}}{{else}}{{#unless systemData.tabs.diary}}hidden{{/unless}}{{/if}}" data-tab="diary">
+            Diary
+            {{#if editMode}}
+            <i class="fas {{#if systemData.tabs.diary}}fa-eye{{else}}fa-eye-slash{{/if}} tab-visibility-toggle" data-tab-target="diary" title="Toggle visibility"></i>
+            {{/if}}
+        </a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- General Tab --}}
+        <div class="tab general" data-group="primary" data-tab="general">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-general.html"}}
+        </div>
+        
+        {{!-- Skills Tab --}}
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-skills.html"}}
+        </div>
+
+        {{!-- Combat Tab --}}
+        <div class="tab combat" data-group="primary" data-tab="combat">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-combat.html"}}
+        </div>
+
+        {{!-- Mask Tab --}}
+        <div class="tab mask" data-group="primary" data-tab="mask">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-mask.html"}}
+        </div>
+
+        {{!-- Rhapsodies Tab --}}
+        <div class="tab rhapsodies" data-group="primary" data-tab="rhapsodies">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-rhapsodies.html"}}
+        </div>
+
+        {{!-- Vulcanotech Tab --}}
+        <div class="tab vulcanotech" data-group="primary" data-tab="vulcanotech">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-vulcanotech.html"}}
+        </div>
+
+        {{!-- Almakathir Tab --}}
+        <div class="tab almakathir" data-group="primary" data-tab="almakathir">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-almakathir.html"}}
+        </div>
+
+        {{!-- Omniferis Tab --}}
+        <div class="tab omniferis" data-group="primary" data-tab="omniferis">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-omniferis.html"}}
+        </div>
+
+        {{!-- Diary Tab --}}
+        <div class="tab diary" data-group="primary" data-tab="diary">
+            {{> "systems/sdkdite/templates/actor/tabs/tab-diary.html"}}
+        </div>
+    </section>
+</form>

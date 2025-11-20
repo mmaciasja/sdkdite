@@ -12,12 +12,12 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/sdkdite/templates/actor-sheet.html",
+      classes: ["sdkdite", "sheet", "actor"],
+      template: "systems/sdkdite/templates/actor/actor-sheet.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".biography", ".items", ".attributes"],
+      scrollY: [".biography", ".items", ".attributes", ".diary"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
@@ -28,10 +28,44 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   async getData(options) {
     const context = await super.getData(options);
     EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+    context.shorthand = !!game.settings.get("sdkdite", "macroShorthand");
     context.systemData = context.data.system;
     context.dtypes = ATTRIBUTE_TYPES;
+    
+    // Initialize tabs object if it doesn't exist
+    if (!context.systemData.tabs) {
+      context.systemData.tabs = {
+        skills: true,
+        combat: true,
+        mask: true,
+        rhapsodies: true,
+        vulcanotech: true,
+        almakathir: true,
+        omniferis: true,
+        diary: true
+      };
+    }
+    
+    // Get ancestry item
+    if (context.systemData.ancestryId) {
+      context.ancestryItem = game.items.get(context.systemData.ancestryId);
+    }
+    
+    // Get circle item
+    if (context.systemData.circleId) {
+      context.circleItem = game.items.get(context.systemData.circleId);
+    }
+    
+    // Calculate descent stars (0-3 based on total experience)
+    const totalExp = context.systemData.experience?.value || 0;
+    const starCount = Math.min(3, Math.floor(totalExp / 100)); // Example: 1 star per 100 exp
+    context.descentStars = starCount > 0 ? Array(3).fill(false).map((_, i) => i < starCount) : null;
+    
     context.biographyHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.systemData.biography, {
+      secrets: this.document.isOwner,
+      async: true
+    });
+    context.diaryHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.systemData.diary, {
       secrets: this.document.isOwner,
       async: true
     });
@@ -61,6 +95,12 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     // Edit Mode Toggle
     html.find(".edit-mode-toggle").click(this._onToggleEditMode.bind(this));
+
+    // Tab Visibility Toggle
+    html.find(".tab-visibility-toggle").click(this._onToggleTabVisibility.bind(this));
+
+    // Ancestry/Circle Image Box Click
+    html.find(".char-item-small").click(this._onImageBoxClick.bind(this));
 
     // Stat Roll
     html.find(".stat-v-main.rollable").click(this._onStatRoll.bind(this));
@@ -119,6 +159,42 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   /* -------------------------------------------- */
 
   /**
+   * Toggle tab visibility
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onToggleTabVisibility(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const tabTarget = event.currentTarget.dataset.tabTarget;
+    
+    // Initialize tabs object if it doesn't exist
+    if (!this.actor.system.tabs) {
+      await this.actor.update({
+        "system.tabs": {
+          skills: true,
+          combat: true,
+          mask: true,
+          rhapsodies: true,
+          vulcanotech: true,
+          almakathir: true,
+          omniferis: true,
+          diary: true
+        }
+      });
+    }
+    
+    const currentValue = this.actor.system.tabs?.[tabTarget] ?? true;
+    
+    await this.actor.update({
+      [`system.tabs.${tabTarget}`]: !currentValue
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Handle stat rolls
    * @param {Event} event   The originating click event
    * @private
@@ -137,6 +213,61 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     const displayName = statName.charAt(0).toUpperCase() + statName.slice(1);
     
     await rollStat(this.actor, displayName, statValue, statMod);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle clicking on ancestry/circle image boxes
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onImageBoxClick(event) {
+    event.preventDefault();
+    const itemType = event.currentTarget.dataset.itemType;
+    
+    if (!itemType) return;
+    
+    // Get all items of the specified type from game.items
+    const availableItems = game.items.filter(i => i.type === itemType);
+    
+    if (availableItems.length === 0) {
+      ui.notifications.warn(`No ${itemType} items available. Create some in the Items directory first.`);
+      return;
+    }
+    
+    // Create dialog with item selection
+    const content = `
+      <form>
+        <div class="form-group">
+          <label>Select ${itemType.charAt(0).toUpperCase() + itemType.slice(1)}:</label>
+          <select name="itemId">
+            <option value="">-- None --</option>
+            ${availableItems.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
+          </select>
+        </div>
+      </form>
+    `;
+    
+    new Dialog({
+      title: `Select ${itemType.charAt(0).toUpperCase() + itemType.slice(1)}`,
+      content: content,
+      buttons: {
+        select: {
+          label: "Select",
+          callback: async (html) => {
+            const itemId = html.find('[name="itemId"]').val();
+            await this.actor.update({
+              [`system.${itemType}Id`]: itemId
+            });
+          }
+        },
+        cancel: {
+          label: "Cancel"
+        }
+      },
+      default: "select"
+    }).render(true);
   }
 
   /* -------------------------------------------- */
