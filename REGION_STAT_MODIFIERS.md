@@ -141,6 +141,61 @@ const modifiers = { will: -2, health: -10 };  // -2 Will, -10 max Health
 const modifiers = { strike: 1, insight: 1 };  // +1 Strike, +1 Insight
 ```
 
+## Using the Macro Compendium
+
+The system includes a **Region Macros** compendium with pre-configured macros for quick use.
+
+### Manual Mode (Quick Toggle)
+1. Import macros from the compendium to your hotbar
+2. Select tokens on the canvas
+3. Click a macro to apply/remove effects
+4. Use **"Remove All Modifiers"** to clear effects from selected tokens
+5. Use **"Track Region Position"** to auto-clean tokens that left regions
+
+### Automatic Mode (Recommended)
+
+For **true automatic on/off** when tokens enter/leave regions, use Foundry's **Execute Script** region behavior:
+
+**Token Enter Script:**
+```javascript
+const modifiers = {
+  strength: 0, constitution: 0, dexterity: 0, charisma: 0, intelligence: 0,
+  strike: 2, insight: 1, speed: 0, defense: 0, will: 0, health: 0, power: 0
+};
+
+const token = event.data.token;
+if (token?.actor) {
+  await token.setFlag("sdkdite", "regionModifiers", {
+    regionId: region.uuid,
+    modifiers: modifiers
+  });
+  token.actor.prepareData();
+  if (token.actor.sheet?.rendered) token.actor.sheet.render(false);
+  
+  ChatMessage.create({
+    content: `<div class="sdkdite region-entry"><h3>${region.name}</h3><p>${token.name} gained bonuses</p></div>`,
+    speaker: { alias: "Region Effect" }
+  });
+}
+```
+
+**Token Exit Script:**
+```javascript
+const token = event.data.token;
+if (token?.actor) {
+  await token.unsetFlag("sdkdite", "regionModifiers");
+  token.actor.prepareData();
+  if (token.actor.sheet?.rendered) token.actor.sheet.render(false);
+  
+  ChatMessage.create({
+    content: `<div class="sdkdite region-exit"><h3>Left ${region.name}</h3><p>${token.name} lost bonuses</p></div>`,
+    speaker: { alias: "Region Effect" }
+  });
+}
+```
+
+With Execute Script behaviors, modifiers **automatically apply on enter** and **automatically remove on exit**!
+
 ## Future Enhancement
 
 When Foundry VTT adds support for custom region behavior types in future versions, the system is already prepared with the `StatModifierRegionBehavior` class, which will allow you to configure stat modifiers through a proper UI form instead of writing scripts.

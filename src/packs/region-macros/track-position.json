@@ -1,0 +1,9 @@
+{
+  "name": "Track Region Position",
+  "type": "script",
+  "scope": "global",
+  "command": "// This macro checks all tokens and removes modifiers from those outside any region\nconst tokens = canvas.tokens.placeables;\nlet cleanedCount = 0;\n\nfor (const token of tokens) {\n  if (!token.actor) continue;\n  \n  // Check if token has region modifiers\n  const modifiers = token.document.getFlag(\"sdkdite\", \"regionModifiers\");\n  if (!modifiers) continue;\n  \n  // Check if token is currently inside any region\n  const regions = canvas.regions?.placeables || [];\n  let inRegion = false;\n  \n  for (const region of regions) {\n    if (region.testPoint(token.center)) {\n      inRegion = true;\n      break;\n    }\n  }\n  \n  // If not in any region, remove modifiers\n  if (!inRegion) {\n    await token.document.unsetFlag(\"sdkdite\", \"regionModifiers\");\n    token.actor.prepareData();\n    if (token.actor.sheet?.rendered) {\n      token.actor.sheet.render(false);\n    }\n    cleanedCount++;\n  }\n}\n\nif (cleanedCount > 0) {\n  ui.notifications.info(`Cleaned modifiers from ${cleanedCount} token(s) outside regions`);\n  ChatMessage.create({\n    content: `<div class=\"sdkdite region-exit\"><h3>Region Tracking</h3><p>Removed modifiers from ${cleanedCount} token(s) that left regions</p></div>`,\n    speaker: { alias: \"Region Effect\" }\n  });\n} else {\n  ui.notifications.info(\"All tokens are properly tracked\");\n}",
+  "img": "icons/svg/eye.svg",
+  "_id": "000mcrrgn008trck",
+  "_key": "!macros!000mcrrgn008trck"
+}
