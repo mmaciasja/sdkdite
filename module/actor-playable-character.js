@@ -1,7 +1,13 @@
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 import { rollStat } from "./roll.js";
-import { calculateUnusedExperience, calculateDerivedStats } from "./calculations.js";
+import { 
+  calculateUnusedExperience, 
+  calculateDerivedStats, 
+  calculateDescentLevel, 
+  getVirtueLimits, 
+  countVirtuesByType 
+} from "./calculations.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -57,35 +63,13 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     }
     
     // Calculate descent level based on total experience
-    // Descent 0: < 75 exp
-    // Descent 1: 75-149 exp
-    // Descent 2: 150-249 exp
-    // Descent 3: >= 250 exp
     const totalExp = context.systemData.experience?.value || 0;
-    let descentLevel = 0;
-    if (totalExp >= 250) {
-      descentLevel = 3;
-    } else if (totalExp >= 150) {
-      descentLevel = 2;
-    } else if (totalExp >= 75) {
-      descentLevel = 1;
-    }
+    const descentLevel = calculateDescentLevel(totalExp);
     context.descentLevel = descentLevel;
     context.descentStars = descentLevel > 0 ? Array(3).fill(false).map((_, i) => i < descentLevel) : null;
     
-    // Define virtue limits by descent level
-    // Descent 0: 2 Fragmented, 1 Kindred, 0 Harmonized, 0 Defect
-    // Descent 1: 3 Fragmented, 2 Kindred, 0 Harmonized, 0 Defect
-    // Descent 2: 3 Fragmented, 3 Kindred, 1 Harmonized, 0 Defect
-    // Descent 3: 3 Fragmented, 3 Kindred, 3 Harmonized, 0 Defect
-    const virtueLimitsByDescent = {
-      0: { Fragmented: 2, Kindred: 1, Harmonized: 0, Defect: 0 },
-      1: { Fragmented: 3, Kindred: 2, Harmonized: 0, Defect: 0 },
-      2: { Fragmented: 3, Kindred: 3, Harmonized: 1, Defect: 0 },
-      3: { Fragmented: 3, Kindred: 3, Harmonized: 3, Defect: 0 }
-    };
-    
-    const virtueLimits = virtueLimitsByDescent[descentLevel];
+    // Get virtue limits for current descent level
+    const virtueLimits = getVirtueLimits(descentLevel);
     context.virtueLimits = virtueLimits;
     
     // Calculate total available slots
@@ -95,20 +79,7 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     const virtueItems = this.actor.items.filter(item => item.type === "virtue");
     
     // Count current virtues by type
-    const virtueCountsByType = {
-      Fragmented: 0,
-      Kindred: 0,
-      Harmonized: 0,
-      Defect: 0
-    };
-    
-    virtueItems.forEach(virtue => {
-      const virtueType = virtue.system.type || "Fragmented";
-      if (virtueCountsByType.hasOwnProperty(virtueType)) {
-        virtueCountsByType[virtueType]++;
-      }
-    });
-    
+    const virtueCountsByType = countVirtuesByType(virtueItems);
     context.virtueCountsByType = virtueCountsByType;
     
     // Create slots array
@@ -560,39 +531,12 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
   async _showVirtueSelectionDialog(slotIndex) {
     // Get descent level and virtue limits
     const totalExp = this.actor.system.experience?.value || 0;
-    let descentLevel = 0;
-    if (totalExp >= 250) {
-      descentLevel = 3;
-    } else if (totalExp >= 150) {
-      descentLevel = 2;
-    } else if (totalExp >= 75) {
-      descentLevel = 1;
-    }
-    
-    const virtueLimitsByDescent = {
-      0: { Fragmented: 2, Kindred: 1, Harmonized: 0, Defect: 0 },
-      1: { Fragmented: 3, Kindred: 2, Harmonized: 0, Defect: 0 },
-      2: { Fragmented: 3, Kindred: 3, Harmonized: 1, Defect: 0 },
-      3: { Fragmented: 3, Kindred: 3, Harmonized: 3, Defect: 0 }
-    };
-    
-    const virtueLimits = virtueLimitsByDescent[descentLevel];
+    const descentLevel = calculateDescentLevel(totalExp);
+    const virtueLimits = getVirtueLimits(descentLevel);
     
     // Count current virtues by type
     const virtueItems = this.actor.items.filter(item => item.type === "virtue");
-    const virtueCountsByType = {
-      Fragmented: 0,
-      Kindred: 0,
-      Harmonized: 0,
-      Defect: 0
-    };
-    
-    virtueItems.forEach(virtue => {
-      const virtueType = virtue.system.type || "Fragmented";
-      if (virtueCountsByType.hasOwnProperty(virtueType)) {
-        virtueCountsByType[virtueType]++;
-      }
-    });
+    const virtueCountsByType = countVirtuesByType(virtueItems);
     
     // Get all virtue items from world
     const worldVirtues = game.items.filter(i => i.type === "virtue");

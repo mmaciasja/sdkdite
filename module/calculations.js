@@ -2,6 +2,52 @@
  * Actor calculations for the sdkdite system
  */
 
+import { DESCENT_THRESHOLDS, VIRTUE_LIMITS_BY_DESCENT } from "./constants.js";
+
+/**
+ * Calculate descent level based on total experience
+ * @param {number} totalExperience - Total experience value
+ * @returns {number} Descent level (0-3)
+ */
+export function calculateDescentLevel(totalExperience) {
+  if (totalExperience >= DESCENT_THRESHOLDS.LEVEL_3) return 3;
+  if (totalExperience >= DESCENT_THRESHOLDS.LEVEL_2) return 2;
+  if (totalExperience >= DESCENT_THRESHOLDS.LEVEL_1) return 1;
+  return 0;
+}
+
+/**
+ * Get virtue limits for a specific descent level
+ * @param {number} descentLevel - Descent level (0-3)
+ * @returns {Object} Object with virtue type limits
+ */
+export function getVirtueLimits(descentLevel) {
+  return VIRTUE_LIMITS_BY_DESCENT[descentLevel] || VIRTUE_LIMITS_BY_DESCENT[0];
+}
+
+/**
+ * Count virtues by type from a collection of virtue items
+ * @param {Array} virtueItems - Array of virtue items
+ * @returns {Object} Object with counts per virtue type
+ */
+export function countVirtuesByType(virtueItems) {
+  const counts = {
+    Fragmented: 0,
+    Kindred: 0,
+    Harmonized: 0,
+    Defect: 0
+  };
+  
+  virtueItems.forEach(virtue => {
+    const virtueType = virtue.system.type || "Fragmented";
+    if (counts.hasOwnProperty(virtueType)) {
+      counts[virtueType]++;
+    }
+  });
+  
+  return counts;
+}
+
 /**
  * Calculate derived stats for an actor
  * @param {Actor} actor - The actor to calculate stats for
