@@ -4,20 +4,6 @@
   "scope": "global",
   "command": "const modifiers = {\n  strength: 0,\n  constitution: 0,\n  dexterity: 0,\n  charisma: 0,\n  intelligence: 0,\n  strike: 2,\n  insight: 1,\n  speed: 0,\n  defense: 0,\n  will: 0,\n  health: 0,\n  power: 0\n};\n\nconst tokens = canvas.tokens.controlled;\nif (tokens.length === 0) {\n  ui.notifications.warn(\"Select tokens first!\");\n} else {\n  for (const token of tokens) {\n    if (token.actor) {\n      await token.document.setFlag(\"sdkdite\", \"regionModifiers\", {\n        regionId: \"high-ground\",\n        modifiers: modifiers\n      });\n      token.actor.prepareData();\n      if (token.actor.sheet?.rendered) token.actor.sheet.render(false);\n    }\n  }\n  ChatMessage.create({\n    content: `<div class=\"sdkdite region-entry\"><h3>High Ground Advantage</h3><p><strong>Tokens:</strong> ${tokens.map(t => t.name).join(\", \")}</p><p class=\"modifiers\">+2 Strike, +1 Insight</p></div>`,\n    speaker: { alias: \"Region Effect\" }\n  });\n  ui.notifications.info(`Applied High Ground to ${tokens.length} token(s)`);\n}",
   "img": "icons/svg/mountain.svg",
-  "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_stats": {
-    "systemId": "sdkdite",
-    "systemVersion": "0.0.1",
-    "coreVersion": "13.350",
-    "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null
-  },
   "_id": "000mcrrgn002high",
   "_key": "!macros!000mcrrgn002high"
 }

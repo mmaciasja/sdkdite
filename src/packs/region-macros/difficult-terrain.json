@@ -4,20 +4,6 @@
   "scope": "global",
   "command": "const modifiers = {\n  strength: 0,\n  constitution: 0,\n  dexterity: 0,\n  charisma: 0,\n  intelligence: 0,\n  strike: 0,\n  insight: 0,\n  speed: -2,\n  defense: 0,\n  will: 0,\n  health: 0,\n  power: 0\n};\n\nconst tokens = canvas.tokens.controlled;\nif (tokens.length === 0) {\n  ui.notifications.warn(\"Select tokens first!\");\n} else {\n  for (const token of tokens) {\n    if (token.actor) {\n      await token.document.setFlag(\"sdkdite\", \"regionModifiers\", {\n        regionId: \"difficult-terrain\",\n        modifiers: modifiers\n      });\n      token.actor.prepareData();\n      if (token.actor.sheet?.rendered) token.actor.sheet.render(false);\n    }\n  }\n  ChatMessage.create({\n    content: `<div class=\"sdkdite region-entry\"><h3>Difficult Terrain</h3><p><strong>Tokens:</strong> ${tokens.map(t => t.name).join(\", \")}</p><p class=\"modifiers\">-2 Speed</p></div>`,\n    speaker: { alias: \"Region Effect\" }\n  });\n  ui.notifications.info(`Applied Difficult Terrain to ${tokens.length} token(s)`);\n}",
   "img": "icons/svg/ruins.svg",
-  "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_stats": {
-    "systemId": "sdkdite",
-    "systemVersion": "0.0.1",
-    "coreVersion": "13.350",
-    "createdTime": null,
-    "modifiedTime": null,
-    "lastModifiedBy": null
-  },
   "_id": "000mcrrgn004diff",
   "_key": "!macros!000mcrrgn004diff"
 }
