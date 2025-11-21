@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtvecag1t",
+  "_id": "000itmvrtvecag1t",
+  "name": "Veil Sight",
+  "type": "virtue",
+  "img": "icons/svg/eye.svg",
+  "system": {
+    "description": "Your eyes can perceive the ethereal plane and see through magical illusions.",
+    "branch": "Veil",
+    "type": "Kindred",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 0,
+        "charisma": 3,
+        "intelligence": 4
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Vulcanotech"]
+    },
+    "mechanic": "See invisible and ethereal creatures. Automatically detect illusions. +2 Insight when examining magical phenomena."
+  }
+}

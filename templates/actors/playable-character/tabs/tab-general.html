@@ -1,138 +1,215 @@
-{{!-- General Tab - Character Stats --}}
-<div class="stats-container">
-    {{!-- Primary Stat Column --}}
-    <div class="stat-vertical-column">
-        {{!-- Strength --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Strength</div>
-            <div class="stat-v-bottom">
-                {{#if editMode}}
-                <div class="stat-v-main edit-mode">
-                    <input type="number" name="system.strength.level" value="{{systemData.strength.level}}" placeholder="-" />
-                </div>
-                {{else}}
-                <div class="stat-v-main rollable" data-stat="strength">
-                    <span class="stat-display">{{systemData.strength.value}}</span>
-                </div>
-                {{/if}}
-            </div>
-        </div>
-
-        {{!-- Constitution --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Const</div>
-            <div class="stat-v-bottom">
-                {{#if editMode}}
-                <div class="stat-v-main edit-mode">
-                    <input type="number" name="system.constitution.level" value="{{systemData.constitution.level}}" placeholder="-" />
-                </div>
-                {{else}}
-                <div class="stat-v-main rollable" data-stat="constitution">
-                    <span class="stat-display">{{systemData.constitution.value}}</span>
-                </div>
-                {{/if}}
-            </div>
-        </div>
-
-        {{!-- Dexterity --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Dexterity</div>
-            <div class="stat-v-bottom">
-                {{#if editMode}}
-                <div class="stat-v-main edit-mode">
-                    <input type="number" name="system.dexterity.level" value="{{systemData.dexterity.level}}" placeholder="-" />
-                </div>
-                {{else}}
-                <div class="stat-v-main rollable" data-stat="dexterity">
-                    <span class="stat-display">{{systemData.dexterity.value}}</span>
-                </div>
-                {{/if}}
-            </div>
-        </div>
-
-        {{!-- Charisma --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Charisma</div>
-            <div class="stat-v-bottom">
-                {{#if editMode}}
-                <div class="stat-v-main edit-mode">
-                    <input type="number" name="system.charisma.level" value="{{systemData.charisma.level}}" placeholder="-" />
-                </div>
-                {{else}}
-                <div class="stat-v-main rollable" data-stat="charisma">
-                    <span class="stat-display">{{systemData.charisma.value}}</span>
-                </div>
-                {{/if}}
-            </div>
-        </div>
-
-        {{!-- Intelligence --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Intelligence</div>
-            <div class="stat-v-bottom">
-                {{#if editMode}}
-                <div class="stat-v-main edit-mode">
-                    <input type="number" name="system.intelligence.level" value="{{systemData.intelligence.level}}" placeholder="-" />
-                </div>
-                {{else}}
-                <div class="stat-v-main rollable" data-stat="intelligence">
-                    <span class="stat-display">{{systemData.intelligence.value}}</span>
-                </div>
-                {{/if}}
-            </div>
-        </div>
+{{!-- General Tab - 3 Column Layout --}}
+<div class="general-tab-container">
+    {{!-- Column Headers --}}
+    <div class="general-headers">
+        <div class="general-header">Stats</div>
+        <div class="general-header">Status</div>
+        <div class="general-header">Virtues</div>
     </div>
 
-    {{!-- Secondary Stat Column --}}
-    <div class="stat-vertical-column">
-        {{!-- Strike --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Strike</div>
-            <div class="stat-v-bottom">
-                <div class="stat-v-main rollable" data-stat="strike">
-                    <span class="stat-display">{{systemData.strike.value}}</span>
+    {{!-- Main Content Area --}}
+    <div class="general-content">
+        {{!-- STATS COLUMN --}}
+        <div class="general-column stats-column">
+            {{!-- Primary Stats --}}
+            <div class="stat-vertical-column">
+                {{!-- Strength --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Strength</div>
+                    <div class="stat-v-bottom">
+                        {{#if editMode}}
+                        <div class="stat-v-total">
+                            <span class="stat-display">{{systemData.strength.value}}</span>
+                        </div>
+                        <div class="stat-v-level">
+                            <input type="number" name="system.strength.level" value="{{systemData.strength.level}}" placeholder="0" />
+                        </div>
+                        <div class="stat-v-buttons">
+                            <button type="button" class="stat-increment" data-stat="strength" data-action="increment">+</button>
+                            <button type="button" class="stat-increment" data-stat="strength" data-action="decrement">-</button>
+                        </div>
+                        {{else}}
+                        <div class="stat-v-main rollable" data-stat="strength">
+                            <span class="stat-display">{{systemData.strength.value}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{!-- Constitution --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Const</div>
+                    <div class="stat-v-bottom">
+                        {{#if editMode}}
+                        <div class="stat-v-total">
+                            <span class="stat-display">{{systemData.constitution.value}}</span>
+                        </div>
+                        <div class="stat-v-level">
+                            <input type="number" name="system.constitution.level" value="{{systemData.constitution.level}}" placeholder="0" />
+                        </div>
+                        <div class="stat-v-buttons">
+                            <button type="button" class="stat-increment" data-stat="constitution" data-action="increment">+</button>
+                            <button type="button" class="stat-increment" data-stat="constitution" data-action="decrement">-</button>
+                        </div>
+                        {{else}}
+                        <div class="stat-v-main rollable" data-stat="constitution">
+                            <span class="stat-display">{{systemData.constitution.value}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{!-- Dexterity --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Dexterity</div>
+                    <div class="stat-v-bottom">
+                        {{#if editMode}}
+                        <div class="stat-v-total">
+                            <span class="stat-display">{{systemData.dexterity.value}}</span>
+                        </div>
+                        <div class="stat-v-level">
+                            <input type="number" name="system.dexterity.level" value="{{systemData.dexterity.level}}" placeholder="0" />
+                        </div>
+                        <div class="stat-v-buttons">
+                            <button type="button" class="stat-increment" data-stat="dexterity" data-action="increment">+</button>
+                            <button type="button" class="stat-increment" data-stat="dexterity" data-action="decrement">-</button>
+                        </div>
+                        {{else}}
+                        <div class="stat-v-main rollable" data-stat="dexterity">
+                            <span class="stat-display">{{systemData.dexterity.value}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{!-- Charisma --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Charisma</div>
+                    <div class="stat-v-bottom">
+                        {{#if editMode}}
+                        <div class="stat-v-total">
+                            <span class="stat-display">{{systemData.charisma.value}}</span>
+                        </div>
+                        <div class="stat-v-level">
+                            <input type="number" name="system.charisma.level" value="{{systemData.charisma.level}}" placeholder="0" />
+                        </div>
+                        <div class="stat-v-buttons">
+                            <button type="button" class="stat-increment" data-stat="charisma" data-action="increment">+</button>
+                            <button type="button" class="stat-increment" data-stat="charisma" data-action="decrement">-</button>
+                        </div>
+                        {{else}}
+                        <div class="stat-v-main rollable" data-stat="charisma">
+                            <span class="stat-display">{{systemData.charisma.value}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{!-- Intelligence --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Intelligence</div>
+                    <div class="stat-v-bottom">
+                        {{#if editMode}}
+                        <div class="stat-v-total">
+                            <span class="stat-display">{{systemData.intelligence.value}}</span>
+                        </div>
+                        <div class="stat-v-level">
+                            <input type="number" name="system.intelligence.level" value="{{systemData.intelligence.level}}" placeholder="0" />
+                        </div>
+                        <div class="stat-v-buttons">
+                            <button type="button" class="stat-increment" data-stat="intelligence" data-action="increment">+</button>
+                            <button type="button" class="stat-increment" data-stat="intelligence" data-action="decrement">-</button>
+                        </div>
+                        {{else}}
+                        <div class="stat-v-main rollable" data-stat="intelligence">
+                            <span class="stat-display">{{systemData.intelligence.value}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Secondary Stats --}}
+            <div class="stat-vertical-column">
+                {{!-- Strike --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Strike</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.strike.value}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Insight --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Insight</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.insight.value}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Speed --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Speed</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.speed.value}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Defense --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Defense</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.defense.value}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Will --}}
+                <div class="stat-vertical-item">
+                    <div class="stat-v-label">Will</div>
+                    <div class="stat-v-bottom">
+                        <div class="stat-v-main">
+                            <span class="stat-display">{{systemData.will.value}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{!-- Insight --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Insight</div>
-            <div class="stat-v-bottom">
-                <div class="stat-v-main rollable" data-stat="insight">
-                    <span class="stat-display">{{systemData.insight.value}}</span>
-                </div>
-            </div>
+        {{!-- STATUS COLUMN --}}
+        <div class="general-column status-column">
+            {{!-- Empty for now --}}
         </div>
 
-        {{!-- Speed --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Speed</div>
-            <div class="stat-v-bottom">
-                <div class="stat-v-main rollable" data-stat="speed">
-                    <span class="stat-display">{{systemData.speed.value}}</span>
-                </div>
+        {{!-- VIRTUES COLUMN --}}
+        <div class="general-column virtues-column">
+            {{#each virtueSlots as |slot index|}}
+            <div class="virtue-slot" data-slot-index="{{index}}">
+                {{#if slot.virtue}}
+                    {{!-- Show virtue with image and name (both view and edit mode) --}}
+                    <div class="virtue-item" data-virtue-id="{{slot.virtue._id}}">
+                        <div class="virtue-image">
+                            <img src="{{slot.virtue.img}}" alt="{{slot.virtue.name}}" />
+                        </div>
+                        <div class="virtue-name">{{slot.virtue.name}}</div>
+                    </div>
+                {{else}}
+                    {{#if ../editMode}}
+                        {{!-- Edit Mode: Show + button for empty slots --}}
+                        <div class="virtue-add-button">
+                            <span>+</span>
+                        </div>
+                    {{/if}}
+                {{/if}}
             </div>
-        </div>
-
-        {{!-- Defense --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Defense</div>
-            <div class="stat-v-bottom">
-                <div class="stat-v-main rollable" data-stat="defense">
-                    <span class="stat-display">{{systemData.defense.value}}</span>
-                </div>
-            </div>
-        </div>
-
-        {{!-- Will --}}
-        <div class="stat-vertical-item">
-            <div class="stat-v-label">Will</div>
-            <div class="stat-v-bottom">
-                <div class="stat-v-main rollable" data-stat="will">
-                    <span class="stat-display">{{systemData.will.value}}</span>
-                </div>
-            </div>
+            {{/each}}
         </div>
     </div>
 </div>

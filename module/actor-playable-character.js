@@ -56,10 +56,68 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
       context.circleItem = this.actor.items.get(context.systemData.circleId);
     }
     
-    // Calculate descent stars (0-3 based on total experience)
+    // Calculate descent level based on total experience
+    // Descent 0: < 75 exp
+    // Descent 1: 75-149 exp
+    // Descent 2: 150-249 exp
+    // Descent 3: >= 250 exp
     const totalExp = context.systemData.experience?.value || 0;
-    const starCount = Math.min(3, Math.floor(totalExp / 100)); // Example: 1 star per 100 exp
-    context.descentStars = starCount > 0 ? Array(3).fill(false).map((_, i) => i < starCount) : null;
+    let descentLevel = 0;
+    if (totalExp >= 250) {
+      descentLevel = 3;
+    } else if (totalExp >= 150) {
+      descentLevel = 2;
+    } else if (totalExp >= 75) {
+      descentLevel = 1;
+    }
+    context.descentLevel = descentLevel;
+    context.descentStars = descentLevel > 0 ? Array(3).fill(false).map((_, i) => i < descentLevel) : null;
+    
+    // Define virtue limits by descent level
+    // Descent 0: 2 Fragmented, 1 Kindred, 0 Harmonized, 0 Defect
+    // Descent 1: 3 Fragmented, 2 Kindred, 0 Harmonized, 0 Defect
+    // Descent 2: 3 Fragmented, 3 Kindred, 1 Harmonized, 0 Defect
+    // Descent 3: 3 Fragmented, 3 Kindred, 3 Harmonized, 0 Defect
+    const virtueLimitsByDescent = {
+      0: { Fragmented: 2, Kindred: 1, Harmonized: 0, Defect: 0 },
+      1: { Fragmented: 3, Kindred: 2, Harmonized: 0, Defect: 0 },
+      2: { Fragmented: 3, Kindred: 3, Harmonized: 1, Defect: 0 },
+      3: { Fragmented: 3, Kindred: 3, Harmonized: 3, Defect: 0 }
+    };
+    
+    const virtueLimits = virtueLimitsByDescent[descentLevel];
+    context.virtueLimits = virtueLimits;
+    
+    // Calculate total available slots
+    const totalSlots = Object.values(virtueLimits).reduce((sum, val) => sum + val, 0);
+    
+    // Prepare virtue slots based on descent level limits
+    const virtueItems = this.actor.items.filter(item => item.type === "virtue");
+    
+    // Count current virtues by type
+    const virtueCountsByType = {
+      Fragmented: 0,
+      Kindred: 0,
+      Harmonized: 0,
+      Defect: 0
+    };
+    
+    virtueItems.forEach(virtue => {
+      const virtueType = virtue.system.type || "Fragmented";
+      if (virtueCountsByType.hasOwnProperty(virtueType)) {
+        virtueCountsByType[virtueType]++;
+      }
+    });
+    
+    context.virtueCountsByType = virtueCountsByType;
+    
+    // Create slots array
+    context.virtueSlots = Array(totalSlots).fill(null).map((_, index) => {
+      const virtue = virtueItems[index];
+      return {
+        virtue: virtue || null
+      };
+    });
     
     context.biographyHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(context.systemData.biography, {
       secrets: this.document.isOwner,
@@ -105,8 +163,15 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     // Stat Roll
     html.find(".stat-v-main.rollable").click(this._onStatRoll.bind(this));
 
+    // Stat Increment/Decrement Buttons
+    html.find(".stat-increment").click(this._onStatIncrement.bind(this));
+
     // Listen for stat changes to recalculate unused experience
     html.find("input[name^='system.']").on("change", this._onStatChange.bind(this));
+
+    // Virtue Slots
+    html.find(".virtue-add-button").click(this._onVirtueAddClick.bind(this));
+    html.find(".virtue-item").click(this._onVirtueItemClick.bind(this));
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
@@ -213,6 +278,29 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     const displayName = statName.charAt(0).toUpperCase() + statName.slice(1);
     
     await rollStat(this.actor, displayName, statValue, statMod);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle stat increment/decrement button clicks
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onStatIncrement(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    const statName = button.dataset.stat;
+    const action = button.dataset.action;
+    
+    if (!statName) return;
+    
+    const currentLevel = this.actor.system[statName]?.level || 0;
+    const newLevel = action === "increment" ? currentLevel + 1 : currentLevel - 1;
+    
+    await this.actor.update({
+      [`system.${statName}.level`]: newLevel
+    });
   }
 
   /* -------------------------------------------- */
@@ -375,6 +463,224 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       flavor: `<h2>${item.name}</h2><h3>${button.text()}</h3>`
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle clicking on the add virtue button
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onVirtueAddClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const addButton = event.currentTarget;
+    const slot = addButton.closest('.virtue-slot');
+    const slotIndex = parseInt(slot.dataset.slotIndex);
+    
+    // Show virtue selection dialog
+    await this._showVirtueSelectionDialog(slotIndex);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle clicking on a virtue item
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onVirtueItemClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const virtueId = event.currentTarget.dataset.virtueId;
+    const virtue = this.actor.items.get(virtueId);
+    
+    if (!virtue) return;
+    
+    // In edit mode, show context menu with options
+    if (this.editMode) {
+      // Get the slot index
+      const slot = event.currentTarget.closest('.virtue-slot');
+      const slotIndex = parseInt(slot.dataset.slotIndex);
+      
+      new Dialog({
+        title: virtue.name,
+        content: `<p>What would you like to do with <strong>${virtue.name}</strong>?</p>`,
+        buttons: {
+          change: {
+            icon: '<i class="fas fa-exchange-alt"></i>',
+            label: "Change",
+            callback: async () => {
+              // First remove the current virtue
+              await virtue.delete();
+              // Then show the selection dialog
+              await this._showVirtueSelectionDialog(slotIndex);
+            }
+          },
+          remove: {
+            icon: '<i class="fas fa-trash"></i>',
+            label: "Remove",
+            callback: async () => {
+              const confirmed = await Dialog.confirm({
+                title: "Remove Virtue",
+                content: `<p>Remove <strong>${virtue.name}</strong> from this character?</p>`,
+                yes: () => true,
+                no: () => false,
+                defaultYes: false
+              });
+              
+              if (confirmed) {
+                await virtue.delete();
+              }
+            }
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: "Cancel"
+          }
+        },
+        default: "change"
+      }).render(true);
+    } else {
+      // In view mode, open the virtue sheet directly
+      virtue.sheet.render(true);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Show virtue selection dialog
+   * @param {number} slotIndex   The slot index
+   * @private
+   */
+  async _showVirtueSelectionDialog(slotIndex) {
+    // Get descent level and virtue limits
+    const totalExp = this.actor.system.experience?.value || 0;
+    let descentLevel = 0;
+    if (totalExp >= 250) {
+      descentLevel = 3;
+    } else if (totalExp >= 150) {
+      descentLevel = 2;
+    } else if (totalExp >= 75) {
+      descentLevel = 1;
+    }
+    
+    const virtueLimitsByDescent = {
+      0: { Fragmented: 2, Kindred: 1, Harmonized: 0, Defect: 0 },
+      1: { Fragmented: 3, Kindred: 2, Harmonized: 0, Defect: 0 },
+      2: { Fragmented: 3, Kindred: 3, Harmonized: 1, Defect: 0 },
+      3: { Fragmented: 3, Kindred: 3, Harmonized: 3, Defect: 0 }
+    };
+    
+    const virtueLimits = virtueLimitsByDescent[descentLevel];
+    
+    // Count current virtues by type
+    const virtueItems = this.actor.items.filter(item => item.type === "virtue");
+    const virtueCountsByType = {
+      Fragmented: 0,
+      Kindred: 0,
+      Harmonized: 0,
+      Defect: 0
+    };
+    
+    virtueItems.forEach(virtue => {
+      const virtueType = virtue.system.type || "Fragmented";
+      if (virtueCountsByType.hasOwnProperty(virtueType)) {
+        virtueCountsByType[virtueType]++;
+      }
+    });
+    
+    // Get all virtue items from world
+    const worldVirtues = game.items.filter(i => i.type === "virtue");
+    
+    // Get virtues from compendium
+    const compendiumVirtues = [];
+    for (const pack of game.packs) {
+      if (pack.metadata.type === "Item") {
+        const index = await pack.getIndex();
+        for (const entry of index) {
+          if (entry.type === "virtue") {
+            const item = await pack.getDocument(entry._id);
+            if (item) compendiumVirtues.push(item);
+          }
+        }
+      }
+    }
+    
+    // Combine both sources and filter by available types
+    const allVirtues = [...worldVirtues, ...compendiumVirtues];
+    const availableVirtues = allVirtues.filter(virtue => {
+      const virtueType = virtue.system.type || "Fragmented";
+      const limit = virtueLimits[virtueType] || 0;
+      const current = virtueCountsByType[virtueType] || 0;
+      return current < limit;
+    });
+    
+    if (availableVirtues.length === 0) {
+      ui.notifications.warn("No virtue slots available for your current descent level or all virtue types are at their limit.");
+      return;
+    }
+    
+    // Create virtue limit info text
+    const limitInfo = Object.entries(virtueLimits)
+      .filter(([type, limit]) => limit > 0)
+      .map(([type, limit]) => {
+        const current = virtueCountsByType[type] || 0;
+        return `${type}: ${current}/${limit}`;
+      })
+      .join(', ');
+    
+    // Create dialog with virtue selection
+    const content = `
+      <form>
+        <div class="form-group">
+          <label>Virtue Limits (Descent ${descentLevel}):</label>
+          <p style="font-size: 12px; color: #666; margin: 5px 0 10px 0;">${limitInfo}</p>
+        </div>
+        <div class="form-group">
+          <label>Select Virtue:</label>
+          <select name="virtueUuid">
+            <option value="">-- Select --</option>
+            ${availableVirtues.map(virtue => {
+              const source = virtue.pack ? `[Compendium]` : `[World]`;
+              const branch = virtue.system.branch || "Unknown";
+              const type = virtue.system.type || "Unknown";
+              return `<option value="${virtue.uuid}">${virtue.name} (${branch} - ${type}) ${source}</option>`;
+            }).join('')}
+          </select>
+        </div>
+      </form>
+    `;
+    
+    new Dialog({
+      title: "Add Virtue",
+      content: content,
+      buttons: {
+        add: {
+          label: "Add",
+          callback: async (html) => {
+            const virtueUuid = html.find('[name="virtueUuid"]').val();
+            if (!virtueUuid) return;
+            
+            // Get the virtue from UUID
+            const virtue = await fromUuid(virtueUuid);
+            if (!virtue) return;
+            
+            // Create a copy of the virtue on the actor
+            const virtueData = virtue.toObject();
+            await this.actor.createEmbeddedDocuments("Item", [virtueData]);
+          }
+        },
+        cancel: {
+          label: "Cancel"
+        }
+      },
+      default: "add"
+    }).render(true);
   }
 
   /* -------------------------------------------- */

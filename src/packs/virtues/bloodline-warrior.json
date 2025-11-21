@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtivn256l",
+  "_id": "000itmvrtivn256l",
+  "name": "Bloodline Warrior",
+  "type": "virtue",
+  "img": "icons/svg/sword.svg",
+  "system": {
+    "description": "The martial prowess of your ancestors flows through your veins, making you a formidable combatant.",
+    "branch": "Legacy",
+    "type": "Harmonized",
+    "requirements": {
+      "stats": {
+        "strength": 4,
+        "constitution": 3,
+        "dexterity": 2,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Omnifera"]
+    },
+    "mechanic": "+1 Strike, +1 Defense. When wielding ancestral weapons, gain an additional +1 to damage."
+  }
+}

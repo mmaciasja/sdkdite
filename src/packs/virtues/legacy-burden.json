@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtnjyk5eo",
+  "_id": "000itmvrtnjyk5eo",
+  "name": "Legacy's Burden",
+  "type": "virtue",
+  "img": "icons/svg/ruins.svg",
+  "system": {
+    "description": "Your family's dark history weighs on you, but you've learned to channel that pain into power.",
+    "branch": "Legacy",
+    "type": "Defect",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 2,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Omnifera"]
+    },
+    "mechanic": "Take -1 to Charisma-based checks. Gain +2 to Insight when investigating your family's past. Can reroll one failed save per session by invoking ancestral guilt."
+  }
+}

@@ -576,9 +576,9 @@
   background: white;
 }
 
-/* Vertical Stat Column - 57px × 304px */
+/* Vertical Stat Column - 80px × 304px to accommodate edit mode */
 .sdkdite .stat-vertical-column {
-  width: 57px;
+  width: 80px;
   height: 304px;
   display: flex;
   flex-direction: column;
@@ -587,7 +587,7 @@
 }
 
 .sdkdite .stat-vertical-item {
-  width: 57px;
+  width: 80px;
   height: 55px;
   display: flex;
   flex-direction: column;
@@ -1183,4 +1183,253 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* -------------------------------------------- */
+/* General Tab - 3 Column Layout               */
+/* -------------------------------------------- */
+
+.sdkdite .general-tab-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.sdkdite .general-headers {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.sdkdite .general-header {
+  flex: 1;
+  background: #d9d9d9;
+  border: 1px solid black;
+  padding: 4px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+}
+
+.sdkdite .general-content {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sdkdite .general-column {
+  flex: 1;
+  border: 1px solid black;
+  border-top: none;
+  background: white;
+  overflow-y: auto;
+}
+
+/* Stats Column */
+.sdkdite .general-column.stats-column {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background: white;
+}
+
+/* Status Column - Empty for now */
+.sdkdite .general-column.status-column {
+  background: white;
+}
+
+/* Virtues Column */
+.sdkdite .general-column.virtues-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: white;
+}
+
+.sdkdite .virtue-slot {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sdkdite .virtue-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  padding: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sdkdite .virtue-item:hover {
+  background: #c9c9c9;
+}
+
+.sdkdite .virtue-image {
+  width: 27px;
+  height: 27px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sdkdite .virtue-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sdkdite .virtue-name {
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sdkdite .virtue-add-button {
+  width: 100%;
+  height: 100%;
+  background: #d9d9d9;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sdkdite .virtue-add-button:hover {
+  background: #c9c9c9;
+}
+
+.sdkdite .virtue-add-button span {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: black;
+  line-height: 0;
+}
+
+/* Stat modifiers display */
+.sdkdite .stat-v-mod {
+  width: 23px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-left: none;
+  border-radius: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+}
+
+/* Edit Mode Stat Layout */
+.sdkdite .stat-v-total {
+  width: 35px;
+  background: #d9d9d9;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  color: black;
+  text-align: center;
+}
+
+.sdkdite .stat-v-level {
+  width: 23px;
+  background: #f0e68c;
+  border: 1px solid #daa520;
+  border-left: none;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sdkdite .stat-v-level input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: #f0e68c;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.sdkdite .stat-v-level input:focus {
+  outline: none;
+  background: #e6d672;
+}
+
+.sdkdite .stat-v-buttons {
+  width: 23px;
+  background: #f0e68c;
+  border: 1px solid #daa520;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sdkdite .stat-v-buttons button {
+  height: 50%;
+  background: #f0e68c;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.sdkdite .stat-v-buttons button:first-child {
+  border-bottom: 1px solid #daa520;
+  border-radius: 0 5px 0 0;
+}
+
+.sdkdite .stat-v-buttons button:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+.sdkdite .stat-v-buttons button:hover {
+  background: #e6d672;
 }

@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtt8ep8e5",
+  "_id": "000itmvrtt8ep8e5",
+  "name": "Iron Will",
+  "type": "virtue",
+  "img": "icons/svg/aura.svg",
+  "system": {
+    "description": "Your determination is unbreakable. You gain resistance to mental effects and can push through fear.",
+    "branch": "Legacy",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 3,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Omnifera"]
+    },
+    "mechanic": "Gain +2 to Will saves. Once per session, automatically succeed on a mental resistance check."
+  }
+}

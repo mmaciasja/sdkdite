@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt3sitr1h",
+  "_id": "000itmvrt3sitr1h",
+  "name": "Servo Strength",
+  "type": "virtue",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Hydraulic servos in your limbs grant you exceptional physical power.",
+    "branch": "Vulcanotech",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 3,
+        "constitution": 2,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "+2 Strength. Can lift and carry twice the normal amount. Unarmed strikes deal +2 damage."
+  }
+}

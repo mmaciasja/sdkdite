@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrte4qt0if",
+  "_id": "000itmvrte4qt0if",
+  "name": "Ethereal Form",
+  "type": "virtue",
+  "img": "icons/svg/ghost.svg",
+  "system": {
+    "description": "You've learned to shift your physical form partially into the veil, becoming incorporeal for brief moments.",
+    "branch": "Veil",
+    "type": "Harmonized",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 3,
+        "dexterity": 3,
+        "charisma": 3,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Vulcanotech"]
+    },
+    "mechanic": "Once per session, become incorporeal for 1 round. During this time, you can pass through solid objects and are immune to physical damage, but cannot attack or interact with physical objects."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtp2ij06g",
+  "_id": "000itmvrtp2ij06g",
+  "name": "Bio-Resonance",
+  "type": "virtue",
+  "img": "icons/svg/radiation.svg",
+  "system": {
+    "description": "You sense the presence and emotional state of living beings around you through biological resonance.",
+    "branch": "Omnifera",
+    "type": "Kindred",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 0,
+        "charisma": 3,
+        "intelligence": 3
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Legacy"]
+    },
+    "mechanic": "+2 Insight when dealing with living creatures. Can detect life forms within 30 feet and sense their general emotional state."
+  }
+}

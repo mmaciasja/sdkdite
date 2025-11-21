@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtul7r5pe",
+  "_id": "000itmvrtul7r5pe",
+  "name": "Heirloom Bond",
+  "type": "virtue",
+  "img": "icons/svg/pendant.svg",
+  "system": {
+    "description": "You possess a treasured family heirloom that grants you mystical protection and power.",
+    "branch": "Legacy",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 0,
+        "charisma": 3,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Omnifera"]
+    },
+    "mechanic": "Choose one heirloom item. It cannot be lost or destroyed. While wearing it, gain +1 Will and advantage on death saves."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtl3rx1as",
+  "_id": "000itmvrtl3rx1as",
+  "name": "Consuming Hunger",
+  "type": "virtue",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "description": "Your biological modifications have left you with an insatiable hunger that must be regularly satisfied.",
+    "branch": "Omnifera",
+    "type": "Defect",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 3,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Legacy"]
+    },
+    "mechanic": "Must consume twice the normal food. Gain +2 Strength and +1 Strike when well-fed. Take -2 to all stats when hungry for more than 8 hours."
+  }
+}

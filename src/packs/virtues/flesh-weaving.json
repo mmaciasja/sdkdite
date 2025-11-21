@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt3e7awty",
+  "_id": "000itmvrt3e7awty",
+  "name": "Flesh Weaving",
+  "type": "virtue",
+  "img": "icons/svg/blood.svg",
+  "system": {
+    "description": "You can manipulate organic matter, reshaping flesh and bone with your will.",
+    "branch": "Omnifera",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 2,
+        "dexterity": 3,
+        "charisma": 0,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Legacy"]
+    },
+    "mechanic": "Heal 1d6 HP to yourself or an ally by touch. Costs 1 HP to use. Can also reshape minor wounds or scars cosmetically."
+  }
+}

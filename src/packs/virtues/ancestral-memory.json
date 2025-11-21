@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt8hoz04z",
+  "_id": "000itmvrt8hoz04z",
+  "name": "Ancestral Memory",
+  "type": "virtue",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "description": "You can tap into the memories of your lineage, gaining insights from those who came before.",
+    "branch": "Legacy",
+    "type": "Kindred",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 0,
+        "charisma": 2,
+        "intelligence": 3
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Omnifera"]
+    },
+    "mechanic": "Once per session, recall a skill or knowledge your ancestors possessed. Gain proficiency in one skill for one scene."
+  }
+}

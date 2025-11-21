@@ -8,7 +8,8 @@
     "gulp": "gulp",
     "build": "node tools/compile-packs.mjs",
     "extract": "node tools/extract-packs.mjs",
-    "clean": "node tools/clean-old-source.mjs"
+    "clean": "node tools/clean-old-source.mjs",
+    "gen-id": "node tools/generate-id.mjs"
   },
   "browserslist": [
     "last 3 versions"

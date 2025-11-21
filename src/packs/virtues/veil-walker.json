@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrty34a1g5",
+  "_id": "000itmvrty34a1g5",
+  "name": "Veil Walker",
+  "type": "virtue",
+  "img": "icons/svg/door-exit.svg",
+  "system": {
+    "description": "You can traverse the spaces between worlds with practiced ease.",
+    "branch": "Veil",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 2,
+        "dexterity": 2,
+        "charisma": 2,
+        "intelligence": 3
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Vulcanotech"]
+    },
+    "mechanic": "+1 Speed. Can sense nearby veil rifts and portals within 100 feet. Travel time through known veil paths is halved."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtxfwwsj3",
+  "_id": "000itmvrtxfwwsj3",
+  "name": "Reality Fracture",
+  "type": "virtue",
+  "img": "icons/svg/terror.svg",
+  "system": {
+    "description": "Your connection to the veil is unstable, causing reality to occasionally fracture around you.",
+    "branch": "Veil",
+    "type": "Defect",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 2,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Vulcanotech"]
+    },
+    "mechanic": "Random reality glitches occur around you. Roll 1d6 each session: 1-2: Minor inconvenience, 3-4: No effect, 5-6: Beneficial anomaly. Can intentionally trigger a reality fracture once per session to reroll any check (yours or an enemy's)."
+  }
+}

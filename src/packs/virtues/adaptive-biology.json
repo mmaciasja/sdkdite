@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtlqc308z",
+  "_id": "000itmvrtlqc308z",
+  "name": "Adaptive Biology",
+  "type": "virtue",
+  "img": "icons/svg/heal.svg",
+  "system": {
+    "description": "Your cells rapidly adapt to environmental threats, providing temporary resistances.",
+    "branch": "Omnifera",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 4,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Legacy"]
+    },
+    "mechanic": "After taking damage from an element (fire, cold, acid, etc.), gain resistance to that element for 1 hour. Can only have one active resistance at a time."
+  }
+}

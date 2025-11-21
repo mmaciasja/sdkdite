@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt03bjkiu",
+  "_id": "000itmvrt03bjkiu",
+  "name": "Neural Interface",
+  "type": "virtue",
+  "img": "icons/svg/lightning.svg",
+  "system": {
+    "description": "A direct brain-machine interface allows you to communicate with and control technology through thought.",
+    "branch": "Vulcanotech",
+    "type": "Kindred",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 2,
+        "charisma": 0,
+        "intelligence": 4
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "Can interface with machines mentally. +3 to all tech-related checks. Can hack or operate devices without physical contact within 10 feet."
+  }
+}

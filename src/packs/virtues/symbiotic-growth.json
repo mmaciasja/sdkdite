@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt4lzamsr",
+  "_id": "000itmvrt4lzamsr",
+  "name": "Symbiotic Growth",
+  "type": "virtue",
+  "img": "icons/svg/vine.svg",
+  "system": {
+    "description": "Your body hosts beneficial organisms that enhance your physical capabilities and resilience.",
+    "branch": "Omnifera",
+    "type": "Harmonized",
+    "requirements": {
+      "stats": {
+        "strength": 2,
+        "constitution": 4,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Legacy"]
+    },
+    "mechanic": "+2 to Constitution. Immunity to disease. Natural healing occurs twice as fast."
+  }
+}

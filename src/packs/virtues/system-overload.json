@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtiyk91on",
+  "_id": "000itmvrtiyk91on",
+  "name": "System Overload",
+  "type": "virtue",
+  "img": "icons/svg/explosion.svg",
+  "system": {
+    "description": "Your cybernetics are prone to overheating and malfunction under stress, but can be pushed beyond their limits.",
+    "branch": "Vulcanotech",
+    "type": "Defect",
+    "requirements": {
+      "stats": {
+        "strength": 2,
+        "constitution": 2,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "Once per combat, enter Overload mode: +3 to all physical stats for 3 rounds. After Overload, take 1d6 damage and suffer -1 to all stats for 1 hour."
+  }
+}

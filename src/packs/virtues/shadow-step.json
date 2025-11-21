@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt4t3co01",
+  "_id": "000itmvrt4t3co01",
+  "name": "Shadow Step",
+  "type": "virtue",
+  "img": "icons/svg/shadow.svg",
+  "system": {
+    "description": "You can briefly step into the veil between worlds, teleporting short distances through shadows.",
+    "branch": "Veil",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 3,
+        "charisma": 2,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Vulcanotech"]
+    },
+    "mechanic": "Once per combat, teleport up to 30 feet to a shadow you can see. This movement doesn't provoke attacks of opportunity."
+  }
+}

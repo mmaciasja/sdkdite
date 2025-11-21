@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrt1yuk9hl",
+  "_id": "000itmvrt1yuk9hl",
+  "name": "Mechanical Precision",
+  "type": "virtue",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "Your cybernetic enhancements grant you inhuman accuracy and coordination.",
+    "branch": "Vulcanotech",
+    "type": "Fragmented",
+    "requirements": {
+      "stats": {
+        "strength": 0,
+        "constitution": 0,
+        "dexterity": 4,
+        "charisma": 0,
+        "intelligence": 2
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "+2 to Strike with ranged weapons. Can calculate trajectories perfectly, ignoring penalties for range or cover up to medium distance."
+  }
+}

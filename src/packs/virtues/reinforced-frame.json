@@ -1,0 +1,25 @@
+{
+  "_key": "!items!000itmvrtwdr3c8c",
+  "_id": "000itmvrtwdr3c8c",
+  "name": "Reinforced Frame",
+  "type": "virtue",
+  "img": "icons/svg/shield.svg",
+  "system": {
+    "description": "Your skeletal structure has been reinforced with advanced alloys, making you incredibly durable.",
+    "branch": "Vulcanotech",
+    "type": "Harmonized",
+    "requirements": {
+      "stats": {
+        "strength": 3,
+        "constitution": 4,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "+2 Defense, +5 HP. Reduce all physical damage taken by 1 (minimum 1). Weigh 50% more than normal."
+  }
+}
