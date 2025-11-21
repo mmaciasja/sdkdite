@@ -28,6 +28,18 @@ export class SimpleTokenDocument extends TokenDocument {
     }
     return super.getTrackedAttributes(data);
   }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _preUpdate(changed, options, user) {
+    await super._preUpdate(changed, options, user);
+    
+    // Prevent automatic rotation - only allow horizontal flipping
+    if ( changed.rotation !== undefined && !options.sdkditeManualRotation ) {
+      delete changed.rotation;
+    }
+  }
 }
 
 

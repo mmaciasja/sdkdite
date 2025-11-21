@@ -1,6 +1,7 @@
 import { EntitySheetHelper } from "./helper.js";
 import {ATTRIBUTE_TYPES} from "./constants.js";
 import { rollStat } from "./roll.js";
+import { sendItemToChat } from "./chat.js";
 import { 
   calculateUnusedExperience, 
   calculateDerivedStats, 
@@ -516,8 +517,8 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
         default: "change"
       }).render(true);
     } else {
-      // In view mode, open the virtue sheet directly
-      virtue.sheet.render(true);
+      // In view mode, send virtue info to chat instead of opening sheet
+      await sendItemToChat(this.actor, virtue);
     }
   }
 
