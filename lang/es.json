@@ -60,5 +60,22 @@
   "CIRCLE.Wrath.Description": "El quinto círculo, donde los coléricos luchan entre sí en el río Estigia mientras los melancólicos gorjean bajo la superficie. Los miembros de este círculo están consumidos por la rabia y la furia, sus golpes devastadores.",
   "CIRCLE.Violence.Description": "El séptimo círculo, dividido en tres anillos para los violentos contra personas, sí mismos y la naturaleza. Los miembros de este círculo abrazan la brutalidad y la agresión, su destreza en combate legendaria.",
   "CIRCLE.Fraud.Description": "El octavo círculo, dividido en diez fosas para diferentes tipos de fraude. Los miembros de este círculo son maestros del engaño y la manipulación, su astucia y velocidad sin paralelo.",
-  "CIRCLE.Treason.Description": "El noveno y último círculo, congelado en hielo, donde los traidores están aprisionados. Los miembros de este círculo han traicionado los lazos más profundos de confianza, su fría calculación y voluntad absolutas."
+  "CIRCLE.Treason.Description": "El noveno y último círculo, congelado en hielo, donde los traidores están aprisionados. Los miembros de este círculo han traicionado los lazos más profundos de confianza, su fría calculación y voluntad absolutas.",
+
+  "SDKDITE.REGION.BEHAVIOR.StatModifier": "Modificador de Estadísticas",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.label": "Modificadores de Estadísticas",
+  "SDKDITE.REGION.BEHAVIOR.description.label": "Descripción de la Región",
+  "SDKDITE.REGION.BEHAVIOR.displayInChat.label": "Mostrar en el Chat",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.strength.label": "Fuerza",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.constitution.label": "Constitución",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.dexterity.label": "Destreza",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.charisma.label": "Carisma",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.intelligence.label": "Inteligencia",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.strike.label": "Ataque",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.insight.label": "Perspicacia",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.speed.label": "Velocidad",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.defense.label": "Defensa",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.will.label": "Voluntad",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.health.label": "Salud",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.power.label": "Poder"
 }
