@@ -53,13 +53,6 @@ Hooks.once("init", async function() {
   CONFIG.Token.documentClass = SimpleTokenDocument;
   CONFIG.Token.objectClass = SimpleToken;
 
-  // Register custom region behavior
-  console.log("Registering Stat Modifier Region Behavior...");
-  CONFIG.RegionBehavior.dataModels["sdkdite.statModifier"] = StatModifierRegionBehavior;
-  CONFIG.RegionBehavior.typeIcons["sdkdite.statModifier"] = "fa-solid fa-chart-line";
-  CONFIG.RegionBehavior.typeLabels["sdkdite.statModifier"] = "SDKDITE.REGION.BEHAVIOR.StatModifier";
-  console.log("Region behavior registered:", CONFIG.RegionBehavior.dataModels);
-
   // Define document types
   CONFIG.Actor.typeLabels = {
     character: "ACTOR.TypeCharacter"
@@ -144,6 +137,18 @@ Hooks.once("init", async function() {
 
   // Preload template partials
   await preloadHandlebarsTemplates();
+});
+
+/**
+ * Setup hook - register region behaviors after core is ready.
+ */
+Hooks.once("setup", async function() {
+  console.log("Setup: Registering Stat Modifier Region Behavior...");
+  CONFIG.RegionBehavior.dataModels["sdkdite.statModifier"] = StatModifierRegionBehavior;
+  CONFIG.RegionBehavior.typeIcons["sdkdite.statModifier"] = "fa-solid fa-chart-line";
+  CONFIG.RegionBehavior.typeLabels["sdkdite.statModifier"] = "SDKDITE.REGION.BEHAVIOR.StatModifier";
+  console.log("Region behavior registered:", CONFIG.RegionBehavior.dataModels);
+  console.log("Available behavior types:", Object.keys(CONFIG.RegionBehavior.dataModels));
 });
 
 /**
