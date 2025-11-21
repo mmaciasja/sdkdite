@@ -1,0 +1,49 @@
+{
+  "_key": "!items!021itmvrtwkc2msu",
+  "_id": "021itmvrtwkc2msu",
+  "name": "Berserker's Rage",
+  "type": "virtue",
+  "img": "icons/svg/aura.svg",
+  "system": {
+    "description": "<p>Your fury in combat knows no bounds. When you enter battle, primal rage courses through your veins, making your strikes devastating but leaving you vulnerable to counterattacks.</p><p>This raw aggression stems from ancestral warriors who fought without fear, channeling pure violence into every blow.</p>",
+    "branch": "Legacy",
+    "type": "Kindred",
+    "modifiers": {
+      "strike": 2,
+      "insight": 0,
+      "speed": 0,
+      "defense": -1,
+      "will": 0,
+      "strength": 0,
+      "constitution": 0,
+      "dexterity": 0,
+      "charisma": 0,
+      "intelligence": 0,
+      "health": 0,
+      "power": 0
+    },
+    "requirements": {
+      "stats": {
+        "strength": 5,
+        "constitution": 3,
+        "dexterity": 0,
+        "charisma": 0,
+        "intelligence": 0
+      },
+      "virtues": [],
+      "skills": [],
+      "incompatibleBranches": ["Veil"]
+    },
+    "mechanic": "<p><strong>Combat Bonus:</strong> +2 to Strike (offense), -1 to Defense (vulnerability)</p><p><strong>Active Ability:</strong> Once per combat, you may enter a berserker state as a free action. While in this state, all damage you deal is increased by 50%, but you cannot use defensive actions or dodge.</p>"
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "sdkdite",
+    "systemVersion": "0.0.1",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  }
+}

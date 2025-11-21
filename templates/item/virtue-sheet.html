@@ -130,7 +130,93 @@
 
         {{!-- Mechanic Tab --}}
         <div class="tab" data-group="primary" data-tab="mechanic">
-            {{editor mechanicHTML target="system.mechanic" button=true editable=editable engine="prosemirror"}}
+            
+            {{!-- Stat Modifiers Section --}}
+            <div class="requirements-container">
+                <div class="req-section stats-section">
+                    <h3 class="req-section-title">⚡ Stat Modifiers</h3>
+                    <p class="section-description">Bonuses/penalties applied when this virtue is equipped (use negative numbers for penalties)</p>
+                    
+                    <div class="modifiers-grid">
+                        {{!-- Primary Stats --}}
+                        <div class="modifier-group">
+                            <h4>Primary Stats</h4>
+                            <div class="stats-grid">
+                                <div class="stat-requirement">
+                                    <label>Strength</label>
+                                    <input type="number" name="system.modifiers.strength" value="{{systemData.modifiers.strength}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Constitution</label>
+                                    <input type="number" name="system.modifiers.constitution" value="{{systemData.modifiers.constitution}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Dexterity</label>
+                                    <input type="number" name="system.modifiers.dexterity" value="{{systemData.modifiers.dexterity}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Charisma</label>
+                                    <input type="number" name="system.modifiers.charisma" value="{{systemData.modifiers.charisma}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Intelligence</label>
+                                    <input type="number" name="system.modifiers.intelligence" value="{{systemData.modifiers.intelligence}}" placeholder="0"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {{!-- Combat Stats --}}
+                        <div class="modifier-group">
+                            <h4>Combat Stats</h4>
+                            <div class="stats-grid">
+                                <div class="stat-requirement">
+                                    <label>Strike</label>
+                                    <input type="number" name="system.modifiers.strike" value="{{systemData.modifiers.strike}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Insight</label>
+                                    <input type="number" name="system.modifiers.insight" value="{{systemData.modifiers.insight}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Speed</label>
+                                    <input type="number" name="system.modifiers.speed" value="{{systemData.modifiers.speed}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Defense</label>
+                                    <input type="number" name="system.modifiers.defense" value="{{systemData.modifiers.defense}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Will</label>
+                                    <input type="number" name="system.modifiers.will" value="{{systemData.modifiers.will}}" placeholder="0"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {{!-- Resources --}}
+                        <div class="modifier-group">
+                            <h4>Resources</h4>
+                            <div class="stats-grid">
+                                <div class="stat-requirement">
+                                    <label>Health</label>
+                                    <input type="number" name="system.modifiers.health" value="{{systemData.modifiers.health}}" placeholder="0"/>
+                                </div>
+                                <div class="stat-requirement">
+                                    <label>Power</label>
+                                    <input type="number" name="system.modifiers.power" value="{{systemData.modifiers.power}}" placeholder="0"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {{!-- Mechanic Description --}}
+            <div class="requirements-container" style="margin-top: 15px;">
+                <div class="req-section">
+                    <h3 class="req-section-title">📝 Mechanic Description</h3>
+                    {{editor mechanicHTML target="system.mechanic" button=true editable=editable engine="prosemirror"}}
+                </div>
+            </div>
         </div>
     </section>
 </form>

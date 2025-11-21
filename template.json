@@ -125,6 +125,20 @@
     "img": "",
     "branch": "",
     "type": "",
+    "modifiers": {
+      "strike": 0,
+      "insight": 0,
+      "speed": 0,
+      "defense": 0,
+      "will": 0,
+      "strength": 0,
+      "constitution": 0,
+      "dexterity": 0,
+      "charisma": 0,
+      "intelligence": 0,
+      "health": 0,
+      "power": 0
+    },
     "requirements": {
       "stats": {},
       "virtues": [],
