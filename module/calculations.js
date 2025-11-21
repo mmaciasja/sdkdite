@@ -78,6 +78,18 @@ export function calculateVirtueModifiers(actor) {
 }
 
 /**
+ * Get region modifiers for a token
+ * @param {Token} token - The token to check
+ * @returns {Object} Object with region modifiers per stat
+ */
+export function getRegionModifiers(token) {
+  if (!token) return {};
+  
+  const regionData = token.document.getFlag("sdkdite", "regionModifiers");
+  return regionData?.modifiers || {};
+}
+
+/**
  * Calculate derived stats for an actor
  * @param {Actor} actor - The actor to calculate stats for
  */
@@ -86,6 +98,18 @@ export function calculateDerivedStats(actor) {
   
   // Get virtue modifiers (dynamic, scalable)
   const virtueModifiers = calculateVirtueModifiers(actor);
+  
+  // Get region modifiers from token if it exists
+  const token = actor.token?.object || actor.getActiveTokens()[0];
+  const regionModifiers = getRegionModifiers(token);
+  
+  // Combine virtue and region modifiers
+  const allModifiers = {};
+  const allStats = new Set([...Object.keys(virtueModifiers), ...Object.keys(regionModifiers)]);
+  
+  allStats.forEach(stat => {
+    allModifiers[stat] = (virtueModifiers[stat] || 0) + (regionModifiers[stat] || 0);
+  });
   
   // Get base stats from ancestry item
   let baseStats = {
@@ -109,7 +133,7 @@ export function calculateDerivedStats(actor) {
     }
   }
   
-  // Calculate total value for primary stats: value = base (from ancestry) + mod + level + virtue modifiers
+  // Calculate total value for primary stats: value = base (from ancestry) + mod + level + all modifiers
   const primaryStats = ['strength', 'constitution', 'dexterity', 'charisma', 'intelligence'];
   
   primaryStats.forEach(stat => {
@@ -119,10 +143,10 @@ export function calculateDerivedStats(actor) {
       const base = baseStats[baseStat] || 0;
       const mod = system[stat].mod || 0;
       const level = system[stat].level || 0;
-      const virtueMod = virtueModifiers[stat] || 0;
+      const totalMod = allModifiers[stat] || 0;
       
-      // Total value = base (from ancestry) + mod + level + virtue modifiers
-      system[stat].value = base + mod + level + virtueMod;
+      // Total value = base (from ancestry) + mod + level + all modifiers (virtue + region)
+      system[stat].value = base + mod + level + totalMod;
     }
   });
   
@@ -148,34 +172,34 @@ export function calculateDerivedStats(actor) {
     }
   }
   
-  // Combat stats calculated from primary stats + mod + circle bonus + virtue modifiers
+  // Combat stats calculated from primary stats + mod + circle bonus + all modifiers
   const str = system.strength?.value || 0;
   const con = system.constitution?.value || 0;
   const dex = system.dexterity?.value || 0;
   const cha = system.charisma?.value || 0;
   const int = system.intelligence?.value || 0;
 
-  // Strike = tenth of the strength + mod + circle bonus + virtue modifiers
-  system.strike.value = Math.floor((str) / 10) + (system.strike.mod || 0) + circleStats.strike + (virtueModifiers.strike || 0);
+  // Strike = tenth of the strength + mod + circle bonus + all modifiers
+  system.strike.value = Math.floor((str) / 10) + (system.strike.mod || 0) + circleStats.strike + (allModifiers.strike || 0);
   
-  // Insight = tenth of intelligence, charisma, and dexterity + mod + circle bonus + virtue modifiers
-  system.insight.value = Math.floor((int + cha + dex) / 10) + (system.insight.mod || 0) + circleStats.insight + (virtueModifiers.insight || 0);
+  // Insight = tenth of intelligence, charisma, and dexterity + mod + circle bonus + all modifiers
+  system.insight.value = Math.floor((int + cha + dex) / 10) + (system.insight.mod || 0) + circleStats.insight + (allModifiers.insight || 0);
   
-  // Speed = fifth of dexterity + mod + circle bonus + virtue modifiers
-  system.speed.value = Math.floor(dex / 5) + (system.speed.mod || 0) + circleStats.speed + (virtueModifiers.speed || 0);
+  // Speed = fifth of dexterity + mod + circle bonus + all modifiers
+  system.speed.value = Math.floor(dex / 5) + (system.speed.mod || 0) + circleStats.speed + (allModifiers.speed || 0);
   
-  // Defense = Fifth of constitution + mod + circle bonus + virtue modifiers
-  system.defense.value =  Math.floor(con / 5) + (system.defense.mod || 0) + circleStats.defense + (virtueModifiers.defense || 0);
+  // Defense = Fifth of constitution + mod + circle bonus + all modifiers
+  system.defense.value =  Math.floor(con / 5) + (system.defense.mod || 0) + circleStats.defense + (allModifiers.defense || 0);
   
-  // Will = fifth of intelligence + mod + circle bonus + virtue modifiers
-  system.will.value = Math.floor(int / 5) + (system.will.mod || 0) + circleStats.will + (virtueModifiers.will || 0);
+  // Will = fifth of intelligence + mod + circle bonus + all modifiers
+  system.will.value = Math.floor(int / 5) + (system.will.mod || 0) + circleStats.will + (allModifiers.will || 0);
   
-  // Apply virtue modifiers to health and power if they exist
-  if (system.health && virtueModifiers.health) {
-    system.health.max = (system.health.max || 10) + virtueModifiers.health;
+  // Apply all modifiers to health and power if they exist
+  if (system.health && allModifiers.health) {
+    system.health.max = (system.health.max || 10) + allModifiers.health;
   }
-  if (system.power && virtueModifiers.power) {
-    system.power.max = (system.power.max || 5) + virtueModifiers.power;
+  if (system.power && allModifiers.power) {
+    system.power.max = (system.power.max || 5) + allModifiers.power;
   }
   
   return system;

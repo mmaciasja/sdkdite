@@ -99,6 +99,41 @@
   cursor: pointer;
 }
 
+/* Region Chat Messages */
+.chat-message .sdkdite.region-entry,
+.chat-message .sdkdite.region-exit {
+  padding: 10px;
+  border-left: 3px solid #4a90e2;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.chat-message .sdkdite.region-exit {
+  border-left-color: #e24a4a;
+  background: rgba(226, 74, 74, 0.1);
+}
+
+.chat-message .sdkdite.region-entry h3,
+.chat-message .sdkdite.region-exit h3 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.chat-message .sdkdite.region-entry .modifiers {
+  font-size: 11px;
+  color: #555;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.chat-message .sdkdite.region-entry .description {
+  font-size: 10px;
+  color: #666;
+  margin: 5px 0 0 0;
+  font-style: italic;
+}
+
 .sdkdite .char-item-small .placeholder-label {
   font-family: 'Inter', sans-serif;
   font-size: 10px;

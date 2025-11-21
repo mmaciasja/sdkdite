@@ -11,6 +11,7 @@ import { SimpleActorSheet } from "./actor-playable-character.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createWorldbuildingMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { StatModifierRegionBehavior } from "./region-behavior.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -51,6 +52,13 @@ Hooks.once("init", async function() {
   CONFIG.Item.documentClass = SimpleItem;
   CONFIG.Token.documentClass = SimpleTokenDocument;
   CONFIG.Token.objectClass = SimpleToken;
+
+  // Register custom region behavior
+  console.log("Registering Stat Modifier Region Behavior...");
+  CONFIG.RegionBehavior.dataModels["sdkdite.statModifier"] = StatModifierRegionBehavior;
+  CONFIG.RegionBehavior.typeIcons["sdkdite.statModifier"] = "fa-solid fa-chart-line";
+  CONFIG.RegionBehavior.typeLabels["sdkdite.statModifier"] = "SDKDITE.REGION.BEHAVIOR.StatModifier";
+  console.log("Region behavior registered:", CONFIG.RegionBehavior.dataModels);
 
   // Define document types
   CONFIG.Actor.typeLabels = {

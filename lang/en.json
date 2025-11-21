@@ -60,5 +60,22 @@
   "CIRCLE.Wrath.Description": "The fifth circle, where the wrathful fight each other in the River Styx while the sullen gurgle beneath the surface. Members of this circle are consumed by rage and fury, their strikes devastating.",
   "CIRCLE.Violence.Description": "The seventh circle, divided into three rings for the violent against people, self, and nature. Members of this circle embrace brutality and aggression, their combat prowess legendary.",
   "CIRCLE.Fraud.Description": "The eighth circle, divided into ten bolgias for different types of fraud. Members of this circle are masters of deception and manipulation, their cunning and speed unparalleled.",
-  "CIRCLE.Treason.Description": "The ninth and final circle, frozen in ice, where traitors are imprisoned. Members of this circle have betrayed the deepest bonds of trust, their cold calculation and willpower absolute."
+  "CIRCLE.Treason.Description": "The ninth and final circle, frozen in ice, where traitors are imprisoned. Members of this circle have betrayed the deepest bonds of trust, their cold calculation and willpower absolute.",
+
+  "SDKDITE.REGION.BEHAVIOR.StatModifier": "Stat Modifier",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.label": "Stat Modifiers",
+  "SDKDITE.REGION.BEHAVIOR.description.label": "Region Description",
+  "SDKDITE.REGION.BEHAVIOR.displayInChat.label": "Display in Chat",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.strength.label": "Strength",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.constitution.label": "Constitution",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.dexterity.label": "Dexterity",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.charisma.label": "Charisma",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.intelligence.label": "Intelligence",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.strike.label": "Strike",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.insight.label": "Insight",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.speed.label": "Speed",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.defense.label": "Defense",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.will.label": "Will",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.health.label": "Health",
+  "SDKDITE.REGION.BEHAVIOR.modifiers.power.label": "Power"
 }
