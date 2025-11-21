@@ -12,6 +12,10 @@ Until Foundry adds support for custom region behaviors in the UI, you can use th
 
 ### Setup Steps
 
+> **Important:** For correct stat modifier handling, you must add **two Execute Script behaviors** to each region:
+> - One for **Token Enter** (to apply modifiers)
+> - One for **Token Exit** (to remove modifiers)
+
 1. **Create a Region** in your scene (Scene Configuration → Regions tab)
 
 2. **Add Behavior: Execute Script** (Token Enter)
@@ -87,10 +91,12 @@ Until Foundry adds support for custom region behaviors in the UI, you can use th
 
 ### How It Works
 
-1. When a token **enters** the region, the script stores modifier values in the token's flags
+1. When a token **enters** the region, the Token Enter script stores modifier values in the token's flags
 2. The `calculations.js` module reads these modifiers and applies them to all stat calculations
-3. When a token **exits** the region, the modifiers are removed and stats recalculate
+3. When a token **exits** the region, the Token Exit script removes the modifiers and stats recalculate
 4. Chat messages notify players when tokens enter/exit regions (optional)
+
+> **Reminder:** If you only add the Token Enter script, modifiers will persist after leaving the region. Always add both scripts for correct behavior.
 
 ### Modifier Types
 
@@ -212,5 +218,6 @@ When Foundry VTT adds support for custom region behavior types in future version
 - Check that chat permissions are properly configured
 
 **Modifiers persisting after leaving region?**
-- Make sure both Enter and Exit scripts are configured
+- Make sure **both** Enter and Exit scripts are configured for the region
 - The Exit script must use `unsetFlag` to remove the modifiers
+- If you forget the Exit script, modifiers will remain on the token after leaving the region

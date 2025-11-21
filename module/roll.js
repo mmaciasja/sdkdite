@@ -106,30 +106,40 @@ export async function rollStat(actor, statName, statValue, statMod) {
       roll: {
         label: `ROLL`,
         callback: async (html) => {
-          let numAdv = parseInt(html.find("input[id='roll-advantages']").val());
-          let numDis = parseInt(html.find("input[id='roll-disadvantages']").val());
-          let threshold = parseInt(html.find("input[id='roll-threshold']").val());
-          let modifier = parseInt(html.find("input[id='success-modifier']").val());
-          let differenceAdvDis = numAdv - numDis;
-          let totalDices = 2 + Math.abs(differenceAdvDis);
-          let dieSize = "d10";
+          const safeNumber = (value, fallback = 0) => {
+            const num = Number(value);
+            return Number.isFinite(num) ? num : fallback;
+          };
+
+          const numAdv = safeNumber(html.find("input[id='roll-advantages']").val(), 0);
+          const numDis = safeNumber(html.find("input[id='roll-disadvantages']").val(), 0);
+          const threshold = safeNumber(html.find("input[id='roll-threshold']").val(), statValue);
+          const modifier = safeNumber(html.find("input[id='success-modifier']").val(), 0);
+
+          const differenceAdvDis = numAdv - numDis;
+          const totalDices = Math.max(2, 2 + Math.abs(differenceAdvDis));
+          const dieSize = "d10";
           
           let formula;
-          if(differenceAdvDis == 0){
+          if (differenceAdvDis === 0) {
             formula = `${threshold}-(${totalDices}${dieSize})+${modifier}`;
-          } else if(differenceAdvDis > 0){
+          } else if (differenceAdvDis > 0) {
             formula = `${threshold}-(${totalDices}${dieSize}kl2)+${modifier}`;
           } else {
             formula = `${threshold}-(${totalDices}${dieSize}kh2)+${modifier}`;
           }
           
-          // Evaluate and send roll
-          let roll = await new Roll(formula).evaluate();
-          await roll.toMessage({
-            speaker: ChatMessage.getSpeaker({ actor: actor }),
-            flavor: `${statName} Roll (Value: ${statValue}, Mod: ${statMod})`,
-            rollMode: game.settings.get("core", "rollMode")
-          });
+          try {
+            const roll = await new Roll(formula).evaluate({async: true});
+            await roll.toMessage({
+              speaker: ChatMessage.getSpeaker({ actor: actor }),
+              flavor: `${statName} Roll (Value: ${statValue}, Mod: ${statMod})`,
+              rollMode: game.settings.get("core", "rollMode")
+            });
+          } catch (err) {
+            console.error(err);
+            ui.notifications.error("Roll could not be evaluated. Check the inputs and try again.");
+          }
         }
       },
     },

@@ -95,7 +95,7 @@ export function getRegionModifiers(token) {
  */
 export function calculateDerivedStats(actor) {
   const system = actor.system;
-  
+
   // Get virtue modifiers (dynamic, scalable)
   const virtueModifiers = calculateVirtueModifiers(actor);
   
@@ -193,15 +193,21 @@ export function calculateDerivedStats(actor) {
   
   // Will = fifth of intelligence + mod + circle bonus + all modifiers
   system.will.value = Math.floor(int / 5) + (system.will.mod || 0) + circleStats.will + (allModifiers.will || 0);
-  
+
   // Apply all modifiers to health and power if they exist
-  if (system.health && allModifiers.health) {
-    system.health.max = (system.health.max || 10) + allModifiers.health;
+  if (system.health) {
+    const baseHealthMax = system.health._baseMax ?? system.health.max ?? 0;
+    system.health._baseMax = baseHealthMax;
+    system.health.max = baseHealthMax + (allModifiers.health || 0);
+    system.health.value = Math.clamp(system.health.value ?? 0, system.health.min ?? 0, system.health.max);
   }
-  if (system.power && allModifiers.power) {
-    system.power.max = (system.power.max || 5) + allModifiers.power;
+  if (system.power) {
+    const basePowerMax = system.power._baseMax ?? system.power.max ?? 0;
+    system.power._baseMax = basePowerMax;
+    system.power.max = basePowerMax + (allModifiers.power || 0);
+    system.power.value = Math.clamp(system.power.value ?? 0, system.power.min ?? 0, system.power.max);
   }
-  
+
   return system;
 }
 

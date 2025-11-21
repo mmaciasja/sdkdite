@@ -268,7 +268,19 @@ export class SimpleActorSheet extends foundry.appv1.sheets.ActorSheet {
     if (!statName) return;
     
     const currentLevel = this.actor.system[statName]?.level || 0;
-    const newLevel = action === "increment" ? currentLevel + 1 : currentLevel - 1;
+    const availableExperience = this.actor.system.experience?.unused ?? calculateUnusedExperience(this.actor);
+
+    if (action === "increment" && availableExperience < 3) {
+      ui.notifications.warn("Not enough unused experience to increase this stat (requires 3).");
+      return;
+    }
+
+    if (action === "decrement" && currentLevel <= 0) {
+      ui.notifications.warn("Stat level cannot go below 0.");
+      return;
+    }
+
+    const newLevel = Math.max(0, action === "increment" ? currentLevel + 1 : currentLevel - 1);
     
     await this.actor.update({
       [`system.${statName}.level`]: newLevel

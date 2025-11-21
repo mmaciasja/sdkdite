@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import { calculateDerivedStats, calculateUnusedExperience } from "./calculations.js";
 
 /**
  * Extend the base Actor document to support attributes and groups with a custom template creation dialog.
@@ -12,6 +13,8 @@ export class SimpleActor extends Actor {
     this.system.groups = this.system.groups || {};
     this.system.attributes = this.system.attributes || {};
     EntitySheetHelper.clampResourceValues(this.system.attributes);
+    calculateDerivedStats(this);
+    calculateUnusedExperience(this);
   }
 
   /* -------------------------------------------- */
