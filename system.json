@@ -50,6 +50,17 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "region-macros",
+      "label": "Region Macros",
+      "system": "sdkdite",
+      "path": "packs/region-macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "LIMITED",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [

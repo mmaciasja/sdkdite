@@ -1,0 +1,23 @@
+{
+  "name": "Apply Region Modifiers",
+  "type": "script",
+  "scope": "global",
+  "command": "// ====== CONFIGURATION ======\nconst modifiers = {\n  strength: 0,\n  constitution: 0,\n  dexterity: 0,\n  charisma: 0,\n  intelligence: 0,\n  strike: 10,\n  insight: 0,\n  speed: 0,\n  defense: 0,\n  will: 0,\n  health: 0,\n  power: 0\n};\n\nconst regionName = \"Combat Zone\";\nconst showChatMessage = true;\n// ===========================\n\nasync function applyModifiers() {\n  const tokens = canvas.tokens.controlled;\n  \n  if (tokens.length === 0) {\n    ui.notifications.warn(\"Please select at least one token!\");\n    return;\n  }\n\n  for (const token of tokens) {\n    if (!token.actor) {\n      ui.notifications.warn(`Token \"${token.name}\" has no actor assigned.`);\n      continue;\n    }\n\n    await token.document.setFlag(\"sdkdite\", \"regionModifiers\", {\n      regionId: \"macro-applied\",\n      modifiers: modifiers\n    });\n\n    token.actor.prepareData();\n    if (token.actor.sheet?.rendered) {\n      token.actor.sheet.render(false);\n    }\n  }\n\n  if (showChatMessage) {\n    const activeModifiers = Object.entries(modifiers)\n      .filter(([stat, value]) => value !== 0)\n      .map(([stat, value]) => {\n        const sign = value > 0 ? \"+\" : \"\";\n        const label = stat.charAt(0).toUpperCase() + stat.slice(1);\n        return `${sign}${value} ${label}`;\n      });\n\n    if (activeModifiers.length > 0) {\n      const tokenNames = tokens.map(t => t.name).join(\", \");\n      ChatMessage.create({\n        content: `<div class=\"sdkdite region-entry\">\n          <h3>Region Modifiers Applied: ${regionName}</h3>\n          <p><strong>Tokens:</strong> ${tokenNames}</p>\n          <p class=\"modifiers\">${activeModifiers.join(\", \")}</p>\n        </div>`,\n        speaker: { alias: \"Region Effect\" }\n      });\n    }\n  }\n\n  ui.notifications.info(`Applied modifiers to ${tokens.length} token(s)`);\n}\n\nasync function removeModifiers() {\n  const tokens = canvas.tokens.controlled;\n  \n  if (tokens.length === 0) {\n    ui.notifications.warn(\"Please select at least one token!\");\n    return;\n  }\n\n  for (const token of tokens) {\n    if (!token.actor) continue;\n\n    await token.document.unsetFlag(\"sdkdite\", \"regionModifiers\");\n\n    token.actor.prepareData();\n    if (token.actor.sheet?.rendered) {\n      token.actor.sheet.render(false);\n    }\n  }\n\n  if (showChatMessage) {\n    const tokenNames = tokens.map(t => t.name).join(\", \");\n    ChatMessage.create({\n      content: `<div class=\"sdkdite region-exit\">\n        <h3>Region Modifiers Removed: ${regionName}</h3>\n        <p><strong>Tokens:</strong> ${tokenNames}</p>\n      </div>`,\n      speaker: { alias: \"Region Effect\" }\n    });\n  }\n\n  ui.notifications.info(`Removed modifiers from ${tokens.length} token(s)`);\n}\n\nnew Dialog({\n  title: \"Region Stat Modifiers\",\n  content: `\n    <form>\n      <div class=\"form-group\">\n        <label>Choose an action:</label>\n        <p style=\"font-size: 0.9em; color: #999;\">\n          Selected tokens: ${canvas.tokens.controlled.length}\n        </p>\n        <p style=\"font-size: 0.9em; margin-top: 10px;\">\n          <strong>Current modifiers:</strong><br>\n          ${Object.entries(modifiers)\n            .filter(([_, v]) => v !== 0)\n            .map(([k, v]) => `${k}: ${v > 0 ? '+' : ''}${v}`)\n            .join(', ') || 'None'}\n        </p>\n      </div>\n    </form>\n  `,\n  buttons: {\n    apply: {\n      icon: '<i class=\"fas fa-plus\"></i>',\n      label: \"Apply Modifiers\",\n      callback: () => applyModifiers()\n    },\n    remove: {\n      icon: '<i class=\"fas fa-minus\"></i>',\n      label: \"Remove Modifiers\",\n      callback: () => removeModifiers()\n    },\n    cancel: {\n      icon: '<i class=\"fas fa-times\"></i>',\n      label: \"Cancel\"\n    }\n  },\n  default: \"apply\"\n}).render(true);",
+  "img": "icons/svg/dice-target.svg",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "sdkdite",
+    "systemVersion": "0.0.1",
+    "coreVersion": "13.350",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_id": "000mcrrgn001appl",
+  "_key": "!macros!000mcrrgn001appl"
+}
